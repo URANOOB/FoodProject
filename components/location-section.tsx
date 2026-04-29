@@ -2,84 +2,79 @@ import { MapPin, Clock, Calendar } from "iconoir-react"
 
 export function LocationSection() {
   return (
-    <section id="location" className="py-20 md:py-32 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 md:mb-16">
-          <div className="flex items-center justify-center gap-4 mb-6">
+    <section id="location" className="bg-background py-20 md:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center md:mb-16">
+          <div className="mb-6 flex items-center justify-center gap-4">
             <img src="/graphics/truck.svg" alt="Food truck" className="h-16 w-16 object-contain" />
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary tracking-tight">UBICACIÓN</h2>
+            <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl md:text-6xl">UBICACIÓN</h2>
             <img
               src="/graphics/truck.svg"
               alt="Food truck"
-              className="h-16 w-16 object-contain transform scale-x-[-1]"
+              className="h-16 w-16 scale-x-[-1] object-contain"
             />
           </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Encuéntranos todos los sábados junto a Saturn/MediaMarkt en Ingolstadt.
+          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+            Encuéntranos en pleno corazón de Usaquén, Bogotá. Comida callejera con sabor, todos los días.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="relative aspect-video lg:aspect-square rounded-2xl overflow-hidden bg-secondary">
-            <img
-              src="/map-of-ingolstadt-germany-westpark-area-street-map.jpg"
-              alt="Mapa de ubicación"
-              className="w-full h-full object-cover"
+        <div className="grid items-stretch gap-12 lg:grid-cols-2">
+          <div className="relative aspect-video overflow-hidden rounded-lg border border-[#5f4b19] bg-secondary lg:aspect-square">
+            <iframe
+              title="Mapa de ubicación - Usaquén, Bogotá"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-74.040%2C4.690%2C-74.020%2C4.710&amp;layer=mapnik&amp;marker=4.6973%2C-74.0306"
+              className="h-full w-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
-            <div className="absolute inset-0 bg-background/40" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-accent/30 rounded-full animate-ping" />
-                <div className="relative w-12 h-12 bg-accent rounded-full flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-accent-foreground" />
-                </div>
-              </div>
-            </div>
           </div>
 
-          <div className="space-y-8">
-            <div className="p-8 bg-card border border-border rounded-2xl">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-accent-foreground" />
+          <div className="space-y-6">
+            <div className="rounded-lg border border-border bg-card p-8">
+              <div className="mb-6 flex items-start gap-4">
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-accent">
+                  <MapPin className="h-6 w-6 text-accent-foreground" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Ubicación principal</h3>
+                  <h3 className="mb-2 text-2xl font-bold text-foreground">Local principal</h3>
                   <p className="text-lg text-muted-foreground">
-                    Saturn/MediaMarkt
+                    Carrera 6A # 117-15
                     <br />
-                    Am Westpark 7
+                    Usaquén, Bogotá D.C.
                     <br />
-                    85057 Ingolstadt
+                    Colombia
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Calendar className="w-6 h-6 text-primary" />
+              <div className="mb-6 flex items-start gap-4">
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/20">
+                  <Calendar className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">¡Todos los sábados!</h3>
-                  <p className="text-muted-foreground">Visítanos cada semana para disfrutar hamburguesas frescas y más.</p>
+                  <h3 className="mb-2 text-xl font-bold text-foreground">Abierto todos los días</h3>
+                  <p className="text-muted-foreground">
+                    Pásate cuando quieras, no necesitas reservar para una salchipapa bien servida.
+                  </p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-primary" />
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/20">
+                  <Clock className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">Horario</h3>
-                  <p className="text-muted-foreground">Sábados: 11:00 - 20:00 h</p>
+                  <h3 className="mb-2 text-xl font-bold text-foreground">Horario</h3>
+                  <p className="text-muted-foreground">Lunes a domingo: 12:00 - 22:30 h</p>
                 </div>
               </div>
             </div>
 
-            <div className="p-6 bg-primary/10 border border-primary/30 rounded-xl">
-              <h4 className="text-xl font-bold text-primary mb-2">Fiestas, eventos y festivales</h4>
+            <div className="rounded-lg border border-primary/30 bg-primary/10 p-6">
+              <h4 className="mb-2 text-xl font-bold text-primary">Eventos, fiestas y catering</h4>
               <p className="text-foreground">
-                También hacemos catering para tus eventos privados. Contáctanos para recibir una propuesta personalizada.
+                ¿Cumpleaños, oficina o festival? Llevamos la parrilla a tu evento. Escríbenos y armamos un combo a tu medida.
               </p>
             </div>
           </div>

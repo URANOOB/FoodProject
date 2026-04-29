@@ -3,93 +3,92 @@ import { Instagram, Phone, Mail, MapPin } from "iconoir-react"
 
 export function Footer() {
   return (
-    <footer className="py-12 bg-background border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+    <footer className="border-t border-border bg-background py-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 grid gap-8 md:grid-cols-3">
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <img src="/graphics/fooiewagen logo.svg" alt="The Foodie Wagon" className="h-12 w-12 object-contain" />
+            <div className="mb-4 flex items-center gap-3">
+              <img src="/graphics/dominios-kribe-logo.svg" alt="Döminiös K·Ribe" className="h-12 w-12 object-contain" />
               <div>
-                <h3 className="text-primary font-bold text-lg tracking-wider uppercase">The Foodie Wagon</h3>
-                <p className="text-muted-foreground text-xs tracking-widest">DONDE EL SABOR SALE A LA CARRETERA</p>
+                <h3 className="text-lg font-bold uppercase tracking-wider text-primary">Döminiös K·Ribe</h3>
+                <p className="text-xs tracking-widest text-muted-foreground">CARTA CALLEJERA · BOGOTÁ</p>
               </div>
             </div>
-            <p className="text-muted-foreground text-sm mb-3">
-              Comida callejera halal premium en Ingolstadt: hamburguesas, pollo frito, currywurst y más.
+            <p className="mb-3 text-sm text-muted-foreground">
+              Comida callejera con carácter en Usaquén: hamburguesas, perros, salchipapas, parrilla y pizza.
             </p>
             <div className="flex items-center gap-2 text-muted-foreground">
               <img src="/graphics/truck.svg" alt="Food truck" className="h-8 w-8 object-contain" />
-              <span className="text-xs font-medium">Experiencia móvil de food truck</span>
+              <span className="text-xs font-medium">Sabor de barrio, ingredientes frescos</span>
             </div>
           </div>
 
           <div>
-            <h4 className="text-foreground font-bold mb-4 tracking-wide">ENLACES RÁPIDOS</h4>
+            <h4 className="mb-4 font-bold tracking-wide text-foreground">ENLACES RÁPIDOS</h4>
             <nav className="space-y-2">
-              <Link href="#menu" className="block text-muted-foreground hover:text-primary transition-colors">
-                Menú
+              <Link href="#menu" className="block text-muted-foreground transition-colors hover:text-primary">
+                Carta
               </Link>
-              <Link href="#location" className="block text-muted-foreground hover:text-primary transition-colors">
+              <Link href="#location" className="block text-muted-foreground transition-colors hover:text-primary">
                 Ubicación
               </Link>
-              <Link href="#contact" className="block text-muted-foreground hover:text-primary transition-colors">
+              <Link href="#contact" className="block text-muted-foreground transition-colors hover:text-primary">
                 Contacto
               </Link>
             </nav>
           </div>
 
           <div>
-            <h4 className="text-foreground font-bold mb-4 tracking-wide">CONTACTO</h4>
+            <h4 className="mb-4 font-bold tracking-wide text-foreground">CONTACTO</h4>
             <div className="space-y-3">
               <a
-                href="tel:+4917622245627"
-                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                href="tel:+573105554321"
+                className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
               >
-                <Phone className="w-4 h-4" />
-                +49 176 22245627
+                <Phone className="h-4 w-4" />
+                +57 310 555 4321
               </a>
               <a
-                href="mailto:flavor.bytes.gmbh@gmail.com"
-                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                href="mailto:contacto@dominioskribe.co"
+                className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
               >
-                <Mail className="w-4 h-4" />
-                flavor.bytes.gmbh@gmail.com
+                <Mail className="h-4 w-4" />
+                contacto@dominioskribe.co
               </a>
               <p className="flex items-start gap-2 text-muted-foreground">
-                <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
-                Am Westpark 7, 85057 Ingolstadt
+                <MapPin className="mt-1 h-4 w-4 flex-shrink-0" />
+                Carrera 6A # 117-15, Usaquén, Bogotá
               </p>
             </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-muted-foreground text-sm">
-              <p>© {new Date().getFullYear()} FlavorBytes GmbH. Todos los derechos reservados.</p>
+        <div className="border-t border-border pt-8">
+          <div className="mb-4 flex flex-col items-center justify-between gap-4 md:flex-row">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+              <p>© {new Date().getFullYear()} Döminiös K·Ribe S.A.S. Todos los derechos reservados.</p>
               <span className="hidden md:inline">•</span>
-              <Link href="/impressum" className="hover:text-primary transition-colors">
+              <Link href="/aviso-legal" className="transition-colors hover:text-primary">
                 Aviso legal
               </Link>
               <span>•</span>
-              <Link href="/datenschutz" className="hover:text-primary transition-colors">
-                Protección de datos
+              <Link href="/politica-de-privacidad" className="transition-colors hover:text-primary">
+                Política de privacidad
               </Link>
               <span>•</span>
-              <Link href="/agb" className="hover:text-primary transition-colors">
+              <Link href="/terminos-y-condiciones" className="transition-colors hover:text-primary">
                 Términos y condiciones
               </Link>
             </div>
             <div className="flex items-center gap-4">
-              <img src="/graphics/halal logo.svg" alt="100% halal certificado" className="h-10 md:h-12 w-auto" />
               <a
-                href="https://www.instagram.com/thefoodiewagon"
+                href="https://www.instagram.com/dominioskribe"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center text-foreground hover:text-primary hover:bg-secondary/80 transition-all"
-                aria-label="Instagram - The Foodie Wagon"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-foreground transition-all hover:bg-secondary/80 hover:text-primary"
+                aria-label="Instagram - Döminiös K·Ribe"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="h-5 w-5" />
               </a>
             </div>
           </div>

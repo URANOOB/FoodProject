@@ -1,283 +1,341 @@
 "use client"
 
-import { useState } from "react"
-import { MenuCategory } from "./menu-category"
-import { PizzaSlice as BurgerIcon, CoffeeCup, Leaf, FireFlame as Flame } from "iconoir-react"
+import { useMemo, useState } from "react"
+import { CoffeeCup, FireFlame, PizzaSlice, Star, Truck } from "iconoir-react"
 
-const categories = [
-  { id: "beef", label: "Ternera", icon: BurgerIcon },
-  { id: "chicken", label: "Pollo", icon: Flame },
-  { id: "veggie", label: "Veggie", icon: Leaf },
-  { id: "drinks", label: "Bebidas", icon: CoffeeCup },
+type MenuItem = {
+  name: string
+  price: string
+  description: string
+  combo?: string
+  featured?: boolean
+  image?: string
+}
+
+type MenuCategory = {
+  id: string
+  label: string
+  title: string
+  icon: typeof PizzaSlice
+  items: MenuItem[]
+}
+
+const menuCategories: MenuCategory[] = [
+  {
+    id: "burgers",
+    label: "Burgers",
+    title: "Hamburguesas y Sandwichs",
+    icon: PizzaSlice,
+    items: [
+      {
+        name: "Sencilla",
+        price: "12.000",
+        description:
+          "Pan gourmet de ajonjolí negro, carne parrillera o pollo, queso cheddar, verduras, salsas y papas chips.",
+        image: "https://loremflickr.com/600/600/cheeseburger?lock=101",
+      },
+      {
+        name: "Doble o mixta",
+        price: "16.000",
+        combo: "Combo 19.000",
+        featured: true,
+        description:
+          "Doble carne parrillera o pollo, tocineta, doble queso cheddar, verduras, salsas y papas chips.",
+        image: "https://loremflickr.com/600/600/double,cheeseburger?lock=102",
+      },
+      {
+        name: "Especial",
+        price: "15.000",
+        combo: "Combo 18.000",
+        description:
+          "Carne o pollo, tocineta, huevo frito, chorizo, queso cheddar, verduras, salsas y papas chips.",
+        image: "https://loremflickr.com/600/600/burger,bacon,egg?lock=103",
+      },
+      {
+        name: "Sandwich mixto",
+        price: "13.000",
+        combo: "Combo 19.000",
+        description: "Pan árabe con carne y pollo salteados, pimentones, queso cheddar, verduras y salsas.",
+        image: "https://loremflickr.com/600/600/sandwich,grilled?lock=104",
+      },
+    ],
+  },
+  {
+    id: "parrilla",
+    label: "Parrilla",
+    title: "Wok, Churrasco y Mazorcada",
+    icon: FireFlame,
+    items: [
+      {
+        name: "Arroz al wok",
+        price: "14.000",
+        description: "Arroz salteado con carne, pollo, zanahoria, pimentón, ensalada dulce y tajadas de plátano.",
+        image: "https://loremflickr.com/600/600/wok,fried,rice?lock=105",
+      },
+      {
+        name: "Churrasco",
+        price: "23.000",
+        featured: true,
+        description: "Papa francesa premium, churrasco de buen corte y ensalada dulce.",
+        image: "https://loremflickr.com/600/600/churrasco,steak?lock=106",
+      },
+      {
+        name: "Mazorcada",
+        price: "16.000",
+        description:
+          "Base de maíz bañada con salsa, carne y pollo salteados, lechuga, tomate, queso rallado, papas chips y chorizo.",
+        image: "https://loremflickr.com/600/600/corn,salad,bowl?lock=107",
+      },
+    ],
+  },
+  {
+    id: "bbq",
+    label: "BBQ",
+    title: "Alas, Patacón y Costillas",
+    icon: FireFlame,
+    items: [
+      {
+        name: "Alas en salsa búfalo",
+        price: "22.000",
+        featured: true,
+        description: "Papa francesa premium, alas preseleccionadas bañadas en salsa búfalo y ensalada dulce.",
+        image: "https://loremflickr.com/600/600/buffalo,wings?lock=108",
+      },
+      {
+        name: "Patacón mixto",
+        price: "16.000",
+        description:
+          "Patacón maduro con guacamole, carne y pollo salteados, queso rallado, chorizo, lechuga, salsas y papas chips.",
+        image: "https://loremflickr.com/600/600/plantain,patacon?lock=109",
+      },
+      {
+        name: "Costillas BBQ",
+        price: "22.000",
+        description: "Costillas ahumadas bañadas en salsa BBQ, papa francesa premium y ensalada dulce.",
+        image: "https://loremflickr.com/600/600/bbq,ribs?lock=110",
+      },
+    ],
+  },
+  {
+    id: "street",
+    label: "Street",
+    title: "Salchipapas, Perros y Arepas",
+    icon: Truck,
+    items: [
+      {
+        name: "Perro caliente sencillo",
+        price: "9.500",
+        combo: "Combo 12.500",
+        description: "Pan gourmet de ajonjolí negro, salchicha americana, queso cheddar, lechuga, cebolla y salsas.",
+        image: "https://loremflickr.com/600/600/hotdog?lock=111",
+      },
+      {
+        name: "Perro caliente especial",
+        price: "12.500",
+        combo: "Combo 15.500",
+        description:
+          "Salchicha americana, pollo salteado, tocineta, cebolla, queso cheddar, lechuga, salsas y papas chips.",
+        image: "https://loremflickr.com/600/600/hotdog,bacon?lock=112",
+      },
+      {
+        name: "Patacón burguer",
+        price: "22.000",
+        featured: true,
+        description:
+          "Doble patacón pintón, guacamole, doble hamburguesa, cebolla, queso rallado, cheddar, maduro, tocineta y suero costeño.",
+        image: "https://loremflickr.com/600/600/plantain,burger?lock=113",
+      },
+      {
+        name: "Arepa mixta",
+        price: "13.000",
+        combo: "Combo 14.000",
+        description:
+          "Arepa de maíz con carne, pollo, chorizo, proteínas salteadas, queso rallado, salsa de la casa y papas chips.",
+        image: "https://loremflickr.com/600/600/arepa,colombian?lock=114",
+      },
+    ],
+  },
+  {
+    id: "especiales",
+    label: "Especiales",
+    title: "Salchipapas y Lasaña",
+    icon: Star,
+    items: [
+      {
+        name: "Salchipapa sencilla",
+        price: "10.000",
+        description: "Papa seleccionada, salchicha americana, queso cheddar, lechuga y salsas.",
+        image: "https://loremflickr.com/600/600/fries,sausage?lock=115",
+      },
+      {
+        name: "Salchipapa especial",
+        price: "15.500",
+        description:
+          "Papa francesa corte premium, salchicha americana, carne y pollo salteados, chorizo, queso rallado, lechuga, salsas y papas chips.",
+        image: "https://loremflickr.com/600/600/loaded,fries?lock=116",
+      },
+      {
+        name: "Salchipapa súper",
+        price: "22.000",
+        featured: true,
+        description:
+          "Papa francesa 200 g, doble salchicha americana, carne y pollo salteados, chorizo santarrosano, queso rallado, lechuga, salsas y recorte de costilla.",
+        image: "https://loremflickr.com/600/600/fries,meat,loaded?lock=117",
+      },
+      {
+        name: "Lasaña mixta",
+        price: "17.000",
+        description: "Salsa boloñesa, pollo, champiñón, queso y tocineta. Acompañada de pan.",
+        image: "https://loremflickr.com/600/600/lasagna?lock=118",
+      },
+    ],
+  },
+  {
+    id: "pizza",
+    label: "Pizza",
+    title: "Sabores de pizza",
+    icon: CoffeeCup,
+    items: [
+      {
+        name: "Hawaiana",
+        price: "Personal / Medium / Extralarge",
+        description: "Pizza de la casa con masa dorada y mezcla clásica dulce-salada.",
+        image: "https://loremflickr.com/600/600/hawaiian,pizza?lock=119",
+      },
+      {
+        name: "Mexicana",
+        price: "Personal / Medium / Extralarge",
+        description: "Sabor intenso con vegetales, proteína y toque picante.",
+        image: "https://loremflickr.com/600/600/mexican,pizza?lock=120",
+      },
+      {
+        name: "Pollo con champiñones",
+        price: "Personal / Medium / Extralarge",
+        description: "Pollo, champiñones y queso fundido sobre masa artesanal.",
+        image: "https://loremflickr.com/600/600/mushroom,chicken,pizza?lock=121",
+      },
+      {
+        name: "Especial de BBQ",
+        price: "Personal / Medium / Extralarge",
+        featured: true,
+        description: "Costillas, salsa BBQ, tocineta y queso.",
+        image: "https://loremflickr.com/600/600/bbq,pizza?lock=122",
+      },
+    ],
+  },
 ]
 
-const menuItems = {
-  beef: [
-    {
-      name: "Cheesy Buffalo",
-      price: "10,50€",
-      description:
-        "Pan brioche, carne de ternera casera de 140 g, queso, salsa de hamburguesa, pepinillo, cebolla, tomate y lechuga",
-      spiceLevel: 3,
-      image: "/burgers/beef/Cheesy-Buffalo_10,50euros.webp",
-    },
-    {
-      name: "Angry Bull",
-      price: "12,00€",
-      description:
-        "Pan brioche, carne de ternera casera de 140 g, queso, salsa chili cheese, jalapeño, pepinillo, cebolla y lechuga",
-      spiceLevel: 3,
-      image: "/burgers/beef/Angry-Bull_12euros.webp",
-    },
-    {
-      name: "Smokie Beefy BBQ",
-      price: "13,00€",
-      description:
-        "Pan brioche, carne de ternera casera de 140 g, queso, salsa de hamburguesa, pepinillo, aros de cebolla, cebolla tostada, salsa BBQ, tomate y lechuga",
-      spiceLevel: 3,
-      image: "/burgers/beef/Smookie-Beefy-BBQ_13euros.webp",
-    },
-    {
-      name: "Blazing Nacho Beef",
-      price: "13,00€",
-      description:
-        "Pan brioche, carne de ternera casera de 140 g, queso, salsa de hamburguesa, pepinillo, jalapeño, nachos, salsa sriracha, tomate y lechuga",
-      spiceLevel: 3,
-      image: "/burgers/beef/Blazing-Nacho-Beef_13euros.webp",
-    },
-    {
-      name: "Cheese Burger",
-      price: "7,00€",
-      description:
-        "Pan brioche, carne de ternera casera de 140 g, queso, salsa de hamburguesa, pepinillo, cebolla, tomate y lechuga",
-      spiceLevel: 1,
-      image: "/burgers/beef/Cheese-Burger_7euros.webp",
-    },
-  ],
-  chicken: [
-    {
-      name: "Crunchy Chicken",
-      price: "8,50€",
-      description: "Pan brioche, tiras de pollo, queso, salsa de hamburguesa y lechuga",
-      spiceLevel: 2,
-      image: "/burgers/chicken/Chrunchy-Chicken_8,50euros.webp",
-    },
-    {
-      name: "Loaded Crunchy",
-      price: "9,00€",
-      description: "Pan brioche, tiras de pollo, queso, salsa de hamburguesa, tomate, cebolla, pepinillo y lechuga",
-      spiceLevel: 2,
-      image: "/burgers/chicken/Loaded-Chrunchy_9euros.webp",
-    },
-    {
-      name: "Crispy Ringer",
-      price: "10,00€",
-      description: "Pan brioche, tiras de pollo, queso, salsa de hamburguesa, aros de cebolla, cebolla, tomate y lechuga",
-      spiceLevel: 2,
-      image: "/burgers/chicken/Crispy-Ringer_10euros.webp",
-    },
-    {
-      name: "Mexican Cracker",
-      price: "11,00€",
-      description:
-        "Pan brioche, tiras de pollo, queso, salsa de hamburguesa, jalapeño, pepinillo, nachos, salsa sriracha, cebolla y lechuga",
-      spiceLevel: 2,
-      image: "/burgers/chicken/Mexican-Cracker_11euros.webp",
-    },
-    {
-      name: "Flip Chicken Burger",
-      price: "6,00€",
-      description: "Pan brioche, tiras de pollo, queso, salsa de hamburguesa y lechuga",
-      spiceLevel: 1,
-      image: "/burgers/chicken/Flip-Chicken-Burger_6euros.webp",
-    },
-    {
-      name: "Foodie Bomber",
-      price: "13,00€",
-      description:
-        "Pan brioche, tiras de pollo, queso, chili cheese nuggets, salsa chili cheese, cebolla, jalapeño y lechuga",
-      spiceLevel: 2,
-      image: "/burgers/chicken/Foodie-Bomber-13euros.webp",
-    },
-  ],
-  veggie: [
-    {
-      name: "Plant Power",
-      price: "9,00€",
-      description: "Pan brioche, falafel, queso, salsa de hamburguesa, pepinillo, lechuga, cebolla y tomate",
-      spiceLevel: 0,
-    },
-    {
-      name: "Veggie BBQ",
-      price: "11,00€",
-      description:
-        "Pan brioche, falafel, queso, salsa de hamburguesa, pepinillo, aros de cebolla, cebolla tostada, salsa BBQ, tomate y lechuga",
-      spiceLevel: 0,
-    },
-  ],
-  drinks: [
-    { name: "Coca Cola", price: "2,50€", description: "Lata de 330 ml", image: "/graphics/cold drinks sprite cola fanta.svg" },
-    { name: "Coca Cola Zero", price: "2,50€", description: "Lata de 330 ml", image: "/graphics/cold drinks sprite cola fanta.svg" },
-    { name: "Fanta", price: "2,50€", description: "Lata de 330 ml", image: "/graphics/cold drinks sprite cola fanta.svg" },
-    { name: "Sprite", price: "2,50€", description: "Lata de 330 ml", image: "/graphics/cold drinks sprite cola fanta.svg" },
-    { name: "Capri Sonne", price: "1,50€", description: "200 ml", image: "/graphics/caprisun.svg" },
-    { name: "Agua", price: "2,00€", description: "500 ml", image: "/graphics/water.svg" },
-    { name: "Mezzo Mix", price: "2,50€", description: "Lata de 330 ml", image: "/graphics/cold drinks sprite cola fanta.svg" },
-    { name: "Red Bull", price: "3,50€", description: "Lata de 250 ml", image: "/graphics/redbull.svg" },
-  ],
+function MenuItemCard({ item }: { item: MenuItem }) {
+  const [imageFailed, setImageFailed] = useState(false)
+  const showImage = item.image && !imageFailed
+
+  return (
+    <article className="group relative flex flex-col">
+      <div className="relative mb-4 aspect-square w-full">
+        <div className="price-sticker absolute -top-2 -right-2 z-20 transition-transform duration-300 group-hover:scale-110">
+          {item.price}
+        </div>
+
+        {item.featured && (
+          <div className="absolute -top-2 -left-2 z-20 rounded-full bg-primary px-3 py-1 text-xs font-black uppercase tracking-wider text-primary-foreground shadow-lg">
+            Top
+          </div>
+        )}
+
+        <div className="relative h-full w-full transition-transform duration-500 group-hover:-translate-y-2">
+          {showImage ? (
+            <img
+              src={item.image}
+              alt={item.name}
+              loading="lazy"
+              decoding="async"
+              onError={() => setImageFailed(true)}
+              className="h-full w-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_30px_70px_rgba(244,166,42,0.35)]"
+              style={{ filter: "drop-shadow(0 10px 30px rgba(244, 166, 42, 0.25))" }}
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center rounded-2xl border border-dashed border-[#5f4b19] bg-gradient-to-br from-[#1a1810] to-[#0d0c09]">
+              <PizzaSlice className="h-16 w-16 text-[#5f4b19]" />
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="flex flex-1 flex-col px-2 text-center">
+        <h4 className="text-xl font-black uppercase leading-tight text-[#f7f1d7] transition-colors group-hover:text-primary md:text-2xl">
+          {item.name}
+        </h4>
+        <p className="mt-2 text-sm font-medium leading-6 text-[#d9d2bd]">{item.description}</p>
+        {item.combo && (
+          <p className="mt-2 text-sm font-black uppercase tracking-wide text-primary">{item.combo}</p>
+        )}
+      </div>
+    </article>
+  )
 }
 
 export function MenuSection() {
-  const [activeCategory, setActiveCategory] = useState("beef")
+  const [activeCategory, setActiveCategory] = useState(menuCategories[0].id)
+  const activeMenu = useMemo(
+    () => menuCategories.find((category) => category.id === activeCategory) ?? menuCategories[0],
+    [activeCategory],
+  )
 
   return (
-    <section id="menu" className="py-20 md:py-32 bg-card">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-5xl sm:text-6xl md:text-7xl font-black text-primary tracking-tighter mb-4">
-            NUESTRAS HAMBURGUESAS
+    <section id="menu" className="relative overflow-hidden bg-[#0b0b09] py-20 md:py-28">
+      <div className="brush-stroke brush-stroke-left" />
+      <div className="brush-stroke brush-stroke-right" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-12 text-center">
+          <p className="text-xl font-black uppercase tracking-[0.35em] text-[#f4a62a]">Menú</p>
+          <h2 className="mt-3 text-5xl font-black uppercase tracking-tight text-primary sm:text-6xl md:text-7xl">
+            Carta callejera
           </h2>
-          <p className="text-xl text-foreground/80 max-w-3xl mx-auto font-medium">
-            Carne de ternera casera, pollo frito crujiente e ingredientes frescos.
+          <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-7 text-[#d9d2bd] md:text-lg">
+            Productos con el estilo visual de la carta: fondo negro, trazos amarillos, nombres fuertes y precios directos.
           </p>
         </div>
 
-        <div className="mb-16 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary via-amber-400 to-primary opacity-20 animate-pulse" />
-          <div className="relative p-8 text-center border-4 border-primary rounded-3xl bg-card">
-            <p className="text-3xl md:text-5xl font-black text-primary tracking-tight mb-2">MENÚ COMBO</p>
-            <p className="text-xl md:text-2xl font-bold text-foreground">
-              Hamburguesa + papas fritas + bebida = <span className="text-primary">solo 4,50 €</span>
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
-          {categories.map((category) => {
+        {/* Category tabs */}
+        <div className="mb-10 flex gap-4 overflow-x-auto pb-3 md:justify-center">
+          {menuCategories.map((category) => {
             const Icon = category.icon
+            const isActive = category.id === activeCategory
+
             return (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`group flex items-center gap-3 px-8 py-4 rounded-2xl font-black text-lg tracking-tight transition-all duration-300 ${
-                  activeCategory === category.id
-                    ? "bg-primary text-primary-foreground shadow-2xl shadow-primary/50 scale-105"
-                    : "bg-card border-2 border-border text-foreground hover:border-primary/50 hover:scale-105"
+                className={`flex shrink-0 items-center gap-2 rounded-full border px-5 py-3 text-sm font-black uppercase tracking-wide transition-all ${
+                  isActive
+                    ? "border-primary bg-primary text-primary-foreground shadow-[0_0_35px_rgba(251,191,36,0.25)]"
+                    : "border-[#4a3a12] bg-[#15130d] text-[#f7f1d7] hover:border-primary hover:text-primary"
                 }`}
               >
-                <Icon className="w-6 h-6" />
-                <span>{category.label}</span>
+                <Icon className="h-5 w-5" />
+                {category.label}
               </button>
             )
           })}
         </div>
 
-        <MenuCategory items={menuItems[activeCategory as keyof typeof menuItems]} />
-
-        <div className="mt-24 space-y-16">
-          <div>
-            <h3 className="text-4xl md:text-5xl font-black text-primary mb-12 tracking-tighter text-center">
-              ENTRANTES Y ACOMPAÑAMIENTOS
-            </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-              {[
-                { name: "Chili Cheese Nuggets", image: "/Appetizers/Chilli-Cheese-Nuggets.webp", prices: "6 uds. 5 € • 10 uds. 7,50 € • 16 uds. 11 €" },
-                { name: "Palitos de mozzarella", image: "/Appetizers/Mozarella-Sticks.webp", prices: "4 uds. 5 € • 8 uds. 9 € • 14 uds. 14 €" },
-                { name: "Aros de cebolla", image: "/Appetizers/Onion-Rings.webp", prices: "6 uds. 4 € • 12 uds. 7 € • 24 uds. 12 €" },
-                { name: "Porción de papas fritas", image: "/Appetizers/Pommes_3,5euros.webp", prices: "3,50 €", featured: true },
-              ].map((item) => (
-                <div key={item.name} className="group relative cursor-pointer">
-                  <div className="relative w-full aspect-square mb-4 group-hover:-translate-y-2 transition-transform duration-500">
-                    <div className="absolute bottom-2 left-2 z-20 group-hover:scale-110 transition-transform duration-300">
-                      <img src="/graphics/halal logo.svg" alt="100% halal" className="h-10 w-10 md:h-12 md:w-12 drop-shadow-lg" />
-                    </div>
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-contain drop-shadow-[0_15px_40px_rgba(0,0,0,0.3)] group-hover:drop-shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition-all duration-500"
-                      style={{ filter: "drop-shadow(0 8px 20px rgba(251, 191, 36, 0.2))" }}
-                    />
-                  </div>
-                  <div className="text-center">
-                    <h4 className="text-xl font-black text-foreground mb-2 tracking-tight group-hover:text-primary transition-colors">
-                      {item.name}
-                    </h4>
-                    <p className={`font-bold ${item.featured ? "text-2xl text-primary" : "text-sm text-primary"}`}>
-                      {item.prices}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-4xl md:text-5xl font-black text-primary mb-12 tracking-tighter text-center">
-              POLLO FRITO
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-12">
-              {[
-                { name: "Alitas de pollo", image: "/Fried-Chicken/Chicken-Wings.webp", prices: "6 uds. 7,50 € • 10 uds. 11 € • 20 uds. 20 €" },
-                { name: "Tiras de pollo", image: "/Fried-Chicken/Chicken-Stripes.webp", prices: "3 uds. 6 € • 6 uds. 11,50 € • 9 uds. 16 €" },
-              ].map((item) => (
-                <div key={item.name} className="group relative cursor-pointer">
-                  <div className="relative w-full aspect-video mb-6 group-hover:-translate-y-2 transition-transform duration-500">
-                    <div className="absolute bottom-2 left-2 z-20 group-hover:scale-110 transition-transform duration-300">
-                      <img src="/graphics/halal logo.svg" alt="100% halal" className="h-12 w-12 md:h-14 md:w-14 drop-shadow-lg" />
-                    </div>
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] group-hover:drop-shadow-[0_25px_70px_rgba(0,0,0,0.4)] transition-all duration-500"
-                      style={{ filter: "drop-shadow(0 10px 25px rgba(251, 191, 36, 0.25))" }}
-                    />
-                  </div>
-                  <div className="text-center">
-                    <h4 className="text-2xl lg:text-3xl font-black text-foreground mb-3 tracking-tight group-hover:text-primary transition-colors">
-                      {item.name}
-                    </h4>
-                    <p className="text-lg font-bold text-primary">{item.prices}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Active category title */}
+        <div className="mb-10 flex items-center justify-between gap-4 border-b border-[#5f4b19] pb-5">
+          <h3 className="text-3xl font-black uppercase leading-none text-primary md:text-5xl">
+            {activeMenu.title}
+          </h3>
+          <span className="rounded-sm bg-white px-3 py-1 text-xl font-black text-black shadow-[4px_4px_0_rgba(251,191,36,0.55)]">
+            TOP
+          </span>
         </div>
 
-        <div className="mt-16">
-          <h3 className="text-4xl md:text-5xl font-black text-primary mb-12 tracking-tighter text-center">
-            SALSAS Y DIPS
-          </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-            {[
-              { name: "Mayonesa", price: "0,50€" },
-              { name: "Ketchup", price: "0,50€" },
-              { name: "Garlic Flip", price: "1,00€" },
-              { name: "Blazing BBQ", price: "1,00€" },
-              { name: "Super Curry", price: "1,00€" },
-              { name: "Dragon's Flame", price: "1,00€" },
-              { name: "Smokie Volcano", price: "1,00€" },
-              { name: "Sweet Chili Magic", price: "1,00€" },
-              { name: "Tangy Chili Cheese", price: "1,00€" },
-              { name: "Salsa Foodie Burger", price: "1,00€" },
-            ].map((dip) => (
-              <div key={dip.name} className="group cursor-pointer">
-                <div className="relative w-full aspect-square mb-3">
-                  <img
-                    src="/graphics/dips.svg"
-                    alt={dip.name}
-                    className="w-full h-full object-contain group-hover:-translate-y-1 transition-transform duration-300"
-                  />
-                </div>
-                <div className="text-center">
-                  <p className="text-foreground font-bold text-sm mb-1 group-hover:text-primary transition-colors">
-                    {dip.name}
-                  </p>
-                  <p className="text-primary font-black text-lg">{dip.price}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* Items grid */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-12 sm:gap-x-8 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-16">
+          {activeMenu.items.map((item) => (
+            <MenuItemCard key={item.name} item={item} />
+          ))}
         </div>
       </div>
     </section>

@@ -5,90 +5,75 @@ import Link from "next/link"
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-black">
-      <div className="absolute top-1/4 left-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-amber-600/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+    <section className="chalk-hero relative flex min-h-screen items-center justify-center overflow-hidden bg-black pt-20">
+      <div className="brush-stroke brush-stroke-left" />
+      <div className="brush-stroke brush-stroke-right" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="text-center md:text-left order-2 md:order-1">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <img src="/graphics/halal logo.svg" alt="100% halal certificado" className="h-16 w-auto" />
-            </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
+          <div className="order-1 text-center md:text-left">
+            <p className="mb-4 text-sm font-black uppercase tracking-[0.4em] text-primary">
+              Sabor callejero · Bogotá
+            </p>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4">
-              <span className="text-primary">THE FOODIE</span>
+            <h1 className="mb-4 text-5xl font-black uppercase tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+              <span className="text-primary">DÖMINIÖS</span>
               <br />
-              <span className="text-foreground">WAGON</span>
+              <span className="text-foreground">K·RIBE</span>
             </h1>
 
-            <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-light tracking-wide mb-8 max-w-2xl mx-auto">
-              Donde el sabor sale a la carretera
+            <p className="mx-auto mb-8 max-w-2xl text-xl font-light tracking-wide text-muted-foreground sm:text-2xl md:text-3xl">
+              Donde la calle se vuelve sabor
             </p>
 
-            <p className="text-base sm:text-lg text-foreground/80 max-w-xl mx-auto mb-10 leading-relaxed">
-              Hamburguesas halal premium, pollo frito crujiente y auténtica currywurst, directo del food truck para ti.
+            <p className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-foreground/80 sm:text-lg">
+              Hamburguesas gourmet, perros calientes, salchipapas, parrilla y pizzas artesanales preparadas con ingredientes frescos y mucho fuego.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <div className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row md:justify-start">
               <a
-                href="tel:+4917622245627"
-                className="group flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-bold tracking-wider rounded-lg hover:bg-primary/90 transition-all shadow-2xl shadow-primary/50 w-full sm:w-auto justify-center"
+                href="tel:+573105554321"
+                className="group flex w-full items-center justify-center gap-3 rounded-lg bg-primary px-8 py-4 font-bold tracking-wider text-primary-foreground shadow-2xl shadow-primary/30 transition-all hover:bg-primary/90 sm:w-auto"
               >
-                <Phone className="w-5 h-5" />
-                +49 176 22245627
+                <Phone className="h-5 w-5" />
+                +57 310 555 4321
               </a>
               <Link
                 href="#menu"
-                className="group flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary font-bold tracking-wider rounded-lg hover:bg-primary hover:text-primary-foreground transition-all w-full sm:w-auto justify-center"
+                className="group flex w-full items-center justify-center gap-2 rounded-lg border-2 border-primary px-8 py-4 font-bold tracking-wider text-primary transition-all hover:bg-primary hover:text-primary-foreground sm:w-auto"
               >
-                VER MENÚ
-                <FastArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                VER CARTA
+                <FastArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
 
-            <div className="max-w-xl mx-auto mb-16 p-6 md:p-8 bg-primary/10 rounded-2xl border-2 border-primary/30 backdrop-blur-sm">
+            <div className="mx-auto max-w-xl rounded-lg border-2 border-primary/30 bg-primary/10 p-5 backdrop-blur-sm md:mb-16 md:p-8">
               <div className="flex items-center justify-center gap-4 md:gap-6">
-                <img src="/graphics/truck.svg" alt="Food truck" className="h-16 w-16 md:h-20 md:w-20 object-contain flex-shrink-0" />
+                <img src="/graphics/truck.svg" alt="Food truck" className="h-16 w-16 flex-shrink-0 object-contain md:h-20 md:w-20" />
                 <div className="text-left">
-                  <p className="text-primary font-black text-2xl md:text-3xl lg:text-4xl mb-1">Todos los sábados</p>
-                  <p className="text-foreground font-bold text-base md:text-lg lg:text-xl">Am Westpark 7, Ingolstadt</p>
-                  <p className="text-muted-foreground text-sm md:text-base mt-1">11:00 - 20:00 h</p>
+                  <p className="mb-1 text-2xl font-black text-primary md:text-3xl lg:text-4xl">Abierto todos los días</p>
+                  <p className="text-base font-bold text-foreground md:text-lg lg:text-xl">Carrera 6A # 117-15, Usaquén</p>
+                  <p className="mt-1 text-sm text-muted-foreground md:text-base">12:00 - 22:30 h</p>
                 </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-lg mx-auto md:mx-0">
-              <div className="text-center md:text-left">
-                <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">11+</p>
-                <p className="text-xs sm:text-sm text-muted-foreground tracking-wide">HAMBURGUESAS</p>
-              </div>
-              <div className="text-center md:text-left">
-                <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">10+</p>
-                <p className="text-xs sm:text-sm text-muted-foreground tracking-wide">DIPS</p>
-              </div>
-              <div className="text-center md:text-left">
-                <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">100%</p>
-                <p className="text-xs sm:text-sm text-muted-foreground tracking-wide">HALAL</p>
               </div>
             </div>
           </div>
 
-          <div className="order-1 md:order-2 relative">
-            <div className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center">
-              <div className="absolute inset-0 bg-gradient-radial from-primary/20 via-transparent to-transparent animate-pulse" />
+          <div className="relative order-2 md:order-2">
+            <div className="relative flex h-[300px] w-full items-center justify-center sm:h-[360px] md:h-[640px]">
               <img
-                src="/graphics/tasty burger.svg"
-                alt="Nuestras hamburguesas estrella"
-                className="w-full h-full object-contain drop-shadow-[0_0_80px_rgba(251,191,36,0.5)] animate-float"
+                src="https://loremflickr.com/800/800/burger,gourmet?lock=999"
+                alt="Hamburguesa estrella"
+                fetchPriority="high"
+                decoding="async"
+                className="animate-float relative z-10 h-full w-full rounded-full object-cover drop-shadow-[0_0_80px_rgba(251,191,36,0.45)]"
               />
             </div>
           </div>
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <ArrowDown className="w-6 h-6 text-primary" />
+          <ArrowDown className="h-6 w-6 text-primary" />
         </div>
       </div>
     </section>
