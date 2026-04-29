@@ -1,0 +1,18 @@
+
+> my-v0-project@0.1.0 dev
+> next dev --hostname 127.0.0.1
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://127.0.0.1:3000
+- Network:       http://127.0.0.1:3000
+✓ Ready in 344ms
+Creating turbopack project { dir: 'C:\\Users\\will2\\OneDrive\\Desktop\\Food', testMode: true }
+
+ GET / 200 in 1602ms (next.js: 1290ms, application-code: 312ms)
+ GET / 200 in 109ms (next.js: 7ms, application-code: 102ms)
+ GET /graphics/tastyburger.svg 404 in 314ms (next.js: 272ms, application-code: 42ms)
+ GET /apple-touch-icon.png 404 in 54ms (next.js: 7ms, application-code: 47ms)
+ GET / 200 in 58ms (next.js: 3ms, application-code: 55ms)
+ GET / 200 in 79ms (next.js: 2ms, application-code: 76ms)
+ GET / 200 in 85ms (next.js: 3ms, application-code: 82ms)
+[?25h
