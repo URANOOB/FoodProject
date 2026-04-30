@@ -4,11 +4,11 @@ import Link from "next/link"
 import { ArrowLeft } from "iconoir-react"
 
 export const metadata = {
-  title: "Aviso legal | The Foodie Wagon",
-  description: "Información legal y datos de contacto de The Foodie Wagon - FlavorBytes GmbH",
+  title: "Aviso legal | Döminiös K·Ribe",
+  description: "Información legal y datos de contacto de Döminiös K·Ribe S.A.S.",
 }
 
-export default function ImpressumPage() {
+export default function AvisoLegalPage() {
   return (
     <>
       <Header />
@@ -21,26 +21,25 @@ export default function ImpressumPage() {
 
           <div className="mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">Aviso legal</h1>
-            <p className="text-muted-foreground">Información conforme al § 5 TMG (Ley alemana de telemedios).</p>
+            <p className="text-muted-foreground">Información legal y contacto de acuerdo con la normativa colombiana.</p>
           </div>
 
           <div className="prose prose-invert prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary max-w-none space-y-8">
             <section className="bg-card p-6 rounded-lg border border-border">
               <h2 className="text-2xl font-bold text-foreground mb-4">Datos de la empresa</h2>
               <div className="space-y-2 text-muted-foreground">
-                <p><strong className="text-foreground">Razón social:</strong> FlavorBytes GmbH</p>
-                <p><strong className="text-foreground">Nombre comercial:</strong> The Foodie Wagon</p>
-                <p><strong className="text-foreground">Forma jurídica:</strong> Sociedad de responsabilidad limitada alemana (GmbH)</p>
+                <p><strong className="text-foreground">Razón social:</strong> Döminiös K·Ribe S.A.S.</p>
+                <p><strong className="text-foreground">Nombre comercial:</strong> Döminiös K·Ribe</p>
+                <p><strong className="text-foreground">NIT:</strong> [Pendiente de asignación]</p>
               </div>
             </section>
 
             <section className="bg-card p-6 rounded-lg border border-border">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Dirección</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">Ubicación</h2>
               <div className="space-y-1 text-muted-foreground">
-                <p>FlavorBytes GmbH</p>
-                <p>Am Westpark 7</p>
-                <p>85057 Ingolstadt</p>
-                <p>Alemania</p>
+                <p>Carrera 6A # 117-15</p>
+                <p>Usaquén, Bogotá D.C.</p>
+                <p>Colombia</p>
               </div>
             </section>
 
@@ -49,12 +48,12 @@ export default function ImpressumPage() {
               <div className="space-y-2 text-muted-foreground">
                 <p>
                   <strong className="text-foreground">Teléfono:</strong>{" "}
-                  <a href="tel:+4917622245627" className="text-primary hover:underline">+49 176 22245627</a>
+                  <a href="tel:+573105554321" className="text-primary hover:underline">+57 310 555 4321</a>
                 </p>
                 <p>
                   <strong className="text-foreground">Correo electrónico:</strong>{" "}
-                  <a href="mailto:flavor.bytes.gmbh@gmail.com" className="text-primary hover:underline">
-                    flavor.bytes.gmbh@gmail.com
+                  <a href="mailto:contacto@dominioskribe.co" className="text-primary hover:underline">
+                    contacto@dominioskribe.co
                   </a>
                 </p>
               </div>
@@ -63,82 +62,32 @@ export default function ImpressumPage() {
             <section className="bg-card p-6 rounded-lg border border-border">
               <h2 className="text-2xl font-bold text-foreground mb-4">Representación</h2>
               <div className="space-y-2 text-muted-foreground">
-                <p><strong className="text-foreground">Gerente:</strong> Sohaib</p>
-                <p><strong className="text-foreground">Persona de contacto:</strong> Sohaib</p>
+                <p><strong className="text-foreground">Representante legal:</strong> Andrés Ramírez</p>
               </div>
             </section>
 
             <section className="bg-card p-6 rounded-lg border border-border">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Registro mercantil</h2>
-              <div className="space-y-2 text-muted-foreground">
-                <p><strong className="text-foreground">Tribunal de registro:</strong> Amtsgericht Ingolstadt</p>
-                <p><strong className="text-foreground">Número de registro:</strong> HRB [se añadirá posteriormente]</p>
-              </div>
-            </section>
-
-            <section className="bg-card p-6 rounded-lg border border-border">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Identificación fiscal</h2>
-              <div className="space-y-2 text-muted-foreground">
-                <p><strong className="text-foreground">N.º de IVA:</strong> DE [se añadirá posteriormente]</p>
-                <p className="text-sm">Número de identificación fiscal conforme al § 27a de la Ley alemana del IVA.</p>
-              </div>
-            </section>
-
-            <section className="bg-card p-6 rounded-lg border border-border">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Autorización alimentaria</h2>
-              <div className="space-y-2 text-muted-foreground">
-                <p><strong className="text-foreground">Autoridad competente:</strong> Gesundheitsamt Ingolstadt</p>
-                <p><strong className="text-foreground">Certificación:</strong> 100% halal certificado</p>
-                <p className="text-sm">Registro conforme al Reglamento (CE) n.º 852/2004 sobre higiene alimentaria.</p>
-              </div>
-            </section>
-
-            <section className="bg-card p-6 rounded-lg border border-border">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Exención de responsabilidad</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">Propiedad Intelectual</h2>
               <div className="space-y-4 text-muted-foreground text-sm">
                 <p>
-                  Los contenidos de este sitio se han elaborado con el mayor cuidado posible. No obstante, no podemos
-                  garantizar su exactitud, integridad o actualidad.
+                  Los contenidos de este sitio, incluyendo textos, logotipos, imágenes y diseño, son propiedad de Döminiös K·Ribe S.A.S. o se utilizan bajo licencia.
                 </p>
                 <p>
-                  Este sitio puede contener enlaces a páginas externas de terceros. No tenemos influencia sobre esos
-                  contenidos; por tanto, la responsabilidad corresponde al proveedor u operador correspondiente.
+                  Queda prohibida la reproducción total o parcial de cualquier contenido sin la autorización previa y por escrito de los titulares.
                 </p>
-                <p>
-                  Los contenidos y obras creados por los operadores de esta página están sujetos a la legislación alemana
-                  de derechos de autor. Cualquier reproducción o uso fuera de los límites legales requiere autorización por escrito.
-                </p>
-              </div>
-            </section>
-
-            <section className="bg-card p-6 rounded-lg border border-border">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Resolución de disputas</h2>
-              <div className="space-y-2 text-muted-foreground text-sm">
-                <p>
-                  La Comisión Europea ofrece una plataforma de resolución de litigios en línea:
-                  <a
-                    href="https://ec.europa.eu/consumers/odr/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline ml-1"
-                  >
-                    https://ec.europa.eu/consumers/odr/
-                  </a>
-                </p>
-                <p>No estamos obligados ni dispuestos a participar en procedimientos de resolución de disputas ante una junta arbitral de consumo.</p>
               </div>
             </section>
 
             <section className="bg-secondary/30 p-6 rounded-lg border border-border">
               <h2 className="text-2xl font-bold text-foreground mb-4">Más información</h2>
               <div className="space-y-2">
-                <Link href="/datenschutz" className="block text-primary hover:underline">→ Protección de datos</Link>
-                <Link href="/agb" className="block text-primary hover:underline">→ Términos y condiciones</Link>
+                <Link href="/politica-de-privacidad" className="block text-primary hover:underline">→ Protección de datos</Link>
+                <Link href="/terminos-y-condiciones" className="block text-primary hover:underline">→ Términos y condiciones</Link>
               </div>
             </section>
 
             <div className="text-sm text-muted-foreground text-center pt-8 border-t border-border">
-              <p>Actualizado: diciembre de 2025</p>
+              <p>Actualizado: abril de 2026</p>
             </div>
           </div>
         </div>

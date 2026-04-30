@@ -1,11 +1,11 @@
 {
-  "name": "The Foodie Wagon",
-  "short_name": "Foodie Wagon",
-  "description": "Hamburguesas halal premium y pollo frito en Ingolstadt",
+  "name": "Döminiös K·Ribe",
+  "short_name": "Döminiös K·Ribe",
+  "description": "Comida callejera con carácter en Usaquén, Bogotá",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a1a1a",
-  "theme_color": "#fbbf24",
+  "background_color": "#0b0b09",
+  "theme_color": "#fbb017",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -19,7 +19,7 @@
       "type": "image/png"
     }
   ],
-  "categories": ["food", "restaurant", "halal"],
-  "lang": "es-ES",
+  "categories": ["food", "restaurant", "street food"],
+  "lang": "es-CO",
   "dir": "ltr"
 }

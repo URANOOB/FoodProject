@@ -1,11 +1,11 @@
-# robots.txt para The Foodie Wagon
+# robots.txt para Döminiös K·Ribe
 # Permitir que todos los bots rastreen el sitio
 
 User-agent: *
 Allow: /
 
 # Ubicación del sitemap
-Sitemap: https://foodiewagon.de/sitemap.xml
+Sitemap: https://dominioskribe.co/sitemap.xml
 
 # Directivas específicas para bots y rastreadores de IA/LLM
 User-agent: Googlebot

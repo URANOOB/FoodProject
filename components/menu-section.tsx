@@ -1,6 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
+import Image from "next/image"
 import { CoffeeCup, FireFlame, PizzaSlice, Star, Truck } from "iconoir-react"
 
 type MenuItem = {
@@ -32,7 +33,7 @@ const menuCategories: MenuCategory[] = [
         price: "12.000",
         description:
           "Pan gourmet de ajonjolí negro, carne parrillera o pollo, queso cheddar, verduras, salsas y papas chips.",
-        image: "https://loremflickr.com/600/600/cheeseburger?lock=101",
+        image: "/menu-reference/menu-burgers-sandwiches.webp",
       },
       {
         name: "Doble o mixta",
@@ -41,7 +42,7 @@ const menuCategories: MenuCategory[] = [
         featured: true,
         description:
           "Doble carne parrillera o pollo, tocineta, doble queso cheddar, verduras, salsas y papas chips.",
-        image: "https://loremflickr.com/600/600/double,cheeseburger?lock=102",
+        image: "/menu-reference/menu-burgers-sandwiches.webp",
       },
       {
         name: "Especial",
@@ -49,14 +50,14 @@ const menuCategories: MenuCategory[] = [
         combo: "Combo 18.000",
         description:
           "Carne o pollo, tocineta, huevo frito, chorizo, queso cheddar, verduras, salsas y papas chips.",
-        image: "https://loremflickr.com/600/600/burger,bacon,egg?lock=103",
+        image: "/menu-reference/menu-burgers-sandwiches.webp",
       },
       {
         name: "Sandwich mixto",
         price: "13.000",
         combo: "Combo 19.000",
         description: "Pan árabe con carne y pollo salteados, pimentones, queso cheddar, verduras y salsas.",
-        image: "https://loremflickr.com/600/600/sandwich,grilled?lock=104",
+        image: "/menu-reference/menu-burgers-sandwiches.webp",
       },
     ],
   },
@@ -70,21 +71,21 @@ const menuCategories: MenuCategory[] = [
         name: "Arroz al wok",
         price: "14.000",
         description: "Arroz salteado con carne, pollo, zanahoria, pimentón, ensalada dulce y tajadas de plátano.",
-        image: "https://loremflickr.com/600/600/wok,fried,rice?lock=105",
+        image: "/menu-reference/menu-wok-churrasco-mazorcada.webp",
       },
       {
         name: "Churrasco",
         price: "23.000",
         featured: true,
         description: "Papa francesa premium, churrasco de buen corte y ensalada dulce.",
-        image: "https://loremflickr.com/600/600/churrasco,steak?lock=106",
+        image: "/menu-reference/menu-wok-churrasco-mazorcada.webp",
       },
       {
         name: "Mazorcada",
         price: "16.000",
         description:
           "Base de maíz bañada con salsa, carne y pollo salteados, lechuga, tomate, queso rallado, papas chips y chorizo.",
-        image: "https://loremflickr.com/600/600/corn,salad,bowl?lock=107",
+        image: "/menu-reference/menu-wok-churrasco-mazorcada.webp",
       },
     ],
   },
@@ -99,20 +100,20 @@ const menuCategories: MenuCategory[] = [
         price: "22.000",
         featured: true,
         description: "Papa francesa premium, alas preseleccionadas bañadas en salsa búfalo y ensalada dulce.",
-        image: "https://loremflickr.com/600/600/buffalo,wings?lock=108",
+        image: "/menu-reference/menu-wings-patacon-ribs.webp",
       },
       {
         name: "Patacón mixto",
         price: "16.000",
         description:
           "Patacón maduro con guacamole, carne y pollo salteados, queso rallado, chorizo, lechuga, salsas y papas chips.",
-        image: "https://loremflickr.com/600/600/plantain,patacon?lock=109",
+        image: "/menu-reference/menu-wings-patacon-ribs.webp",
       },
       {
         name: "Costillas BBQ",
         price: "22.000",
         description: "Costillas ahumadas bañadas en salsa BBQ, papa francesa premium y ensalada dulce.",
-        image: "https://loremflickr.com/600/600/bbq,ribs?lock=110",
+        image: "/menu-reference/menu-wings-patacon-ribs.webp",
       },
     ],
   },
@@ -127,7 +128,7 @@ const menuCategories: MenuCategory[] = [
         price: "9.500",
         combo: "Combo 12.500",
         description: "Pan gourmet de ajonjolí negro, salchicha americana, queso cheddar, lechuga, cebolla y salsas.",
-        image: "https://loremflickr.com/600/600/hotdog?lock=111",
+        image: "/menu-reference/menu-hotdogs-arepas.webp",
       },
       {
         name: "Perro caliente especial",
@@ -135,7 +136,7 @@ const menuCategories: MenuCategory[] = [
         combo: "Combo 15.500",
         description:
           "Salchicha americana, pollo salteado, tocineta, cebolla, queso cheddar, lechuga, salsas y papas chips.",
-        image: "https://loremflickr.com/600/600/hotdog,bacon?lock=112",
+        image: "/menu-reference/menu-hotdogs-arepas.webp",
       },
       {
         name: "Patacón burguer",
@@ -143,7 +144,7 @@ const menuCategories: MenuCategory[] = [
         featured: true,
         description:
           "Doble patacón pintón, guacamole, doble hamburguesa, cebolla, queso rallado, cheddar, maduro, tocineta y suero costeño.",
-        image: "https://loremflickr.com/600/600/plantain,burger?lock=113",
+        image: "/menu-reference/menu-hotdogs-arepas.webp",
       },
       {
         name: "Arepa mixta",
@@ -151,7 +152,7 @@ const menuCategories: MenuCategory[] = [
         combo: "Combo 14.000",
         description:
           "Arepa de maíz con carne, pollo, chorizo, proteínas salteadas, queso rallado, salsa de la casa y papas chips.",
-        image: "https://loremflickr.com/600/600/arepa,colombian?lock=114",
+        image: "/menu-reference/menu-hotdogs-arepas.webp",
       },
     ],
   },
@@ -165,14 +166,14 @@ const menuCategories: MenuCategory[] = [
         name: "Salchipapa sencilla",
         price: "10.000",
         description: "Papa seleccionada, salchicha americana, queso cheddar, lechuga y salsas.",
-        image: "https://loremflickr.com/600/600/fries,sausage?lock=115",
+        image: "/menu-reference/menu-salchipapas-lasagna.webp",
       },
       {
         name: "Salchipapa especial",
         price: "15.500",
         description:
           "Papa francesa corte premium, salchicha americana, carne y pollo salteados, chorizo, queso rallado, lechuga, salsas y papas chips.",
-        image: "https://loremflickr.com/600/600/loaded,fries?lock=116",
+        image: "/menu-reference/menu-salchipapas-lasagna.webp",
       },
       {
         name: "Salchipapa súper",
@@ -180,13 +181,13 @@ const menuCategories: MenuCategory[] = [
         featured: true,
         description:
           "Papa francesa 200 g, doble salchicha americana, carne y pollo salteados, chorizo santarrosano, queso rallado, lechuga, salsas y recorte de costilla.",
-        image: "https://loremflickr.com/600/600/fries,meat,loaded?lock=117",
+        image: "/menu-reference/menu-salchipapas-lasagna.webp",
       },
       {
         name: "Lasaña mixta",
         price: "17.000",
         description: "Salsa boloñesa, pollo, champiñón, queso y tocineta. Acompañada de pan.",
-        image: "https://loremflickr.com/600/600/lasagna?lock=118",
+        image: "/menu-reference/menu-salchipapas-lasagna.webp",
       },
     ],
   },
@@ -200,26 +201,26 @@ const menuCategories: MenuCategory[] = [
         name: "Hawaiana",
         price: "Personal / Medium / Extralarge",
         description: "Pizza de la casa con masa dorada y mezcla clásica dulce-salada.",
-        image: "https://loremflickr.com/600/600/hawaiian,pizza?lock=119",
+        image: "/menu-reference/menu-pizza.webp",
       },
       {
         name: "Mexicana",
         price: "Personal / Medium / Extralarge",
         description: "Sabor intenso con vegetales, proteína y toque picante.",
-        image: "https://loremflickr.com/600/600/mexican,pizza?lock=120",
+        image: "/menu-reference/menu-pizza.webp",
       },
       {
         name: "Pollo con champiñones",
         price: "Personal / Medium / Extralarge",
         description: "Pollo, champiñones y queso fundido sobre masa artesanal.",
-        image: "https://loremflickr.com/600/600/mushroom,chicken,pizza?lock=121",
+        image: "/menu-reference/menu-pizza.webp",
       },
       {
         name: "Especial de BBQ",
         price: "Personal / Medium / Extralarge",
         featured: true,
         description: "Costillas, salsa BBQ, tocineta y queso.",
-        image: "https://loremflickr.com/600/600/bbq,pizza?lock=122",
+        image: "/menu-reference/menu-pizza.webp",
       },
     ],
   },
@@ -244,15 +245,17 @@ function MenuItemCard({ item }: { item: MenuItem }) {
 
         <div className="relative h-full w-full transition-transform duration-500 group-hover:-translate-y-2">
           {showImage ? (
-            <img
-              src={item.image}
-              alt={item.name}
-              loading="lazy"
-              decoding="async"
-              onError={() => setImageFailed(true)}
-              className="h-full w-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_30px_70px_rgba(244,166,42,0.35)]"
-              style={{ filter: "drop-shadow(0 10px 30px rgba(244, 166, 42, 0.25))" }}
-            />
+            <div className="relative h-full w-full">
+              <Image
+                src={item.image!}
+                alt={item.name}
+                fill
+                sizes="(max-width: 768px) 50vw, 33vw"
+                className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_30px_70px_rgba(244,166,42,0.35)]"
+                onError={() => setImageFailed(true)}
+                style={{ filter: "drop-shadow(0 10px 30px rgba(244, 166, 42, 0.25))" }}
+              />
+            </div>
           ) : (
             <div className="flex h-full w-full items-center justify-center rounded-2xl border border-dashed border-[#5f4b19] bg-gradient-to-br from-[#1a1810] to-[#0d0c09]">
               <PizzaSlice className="h-16 w-16 text-[#5f4b19]" />

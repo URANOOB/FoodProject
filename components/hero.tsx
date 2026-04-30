@@ -2,6 +2,7 @@
 
 import { ArrowDown, FastArrowRight, Phone } from "iconoir-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export function Hero() {
   return (
@@ -61,13 +62,16 @@ export function Hero() {
 
           <div className="relative order-2 md:order-2">
             <div className="relative flex h-[300px] w-full items-center justify-center sm:h-[360px] md:h-[640px]">
-              <img
-                src="https://loremflickr.com/800/800/burger,gourmet?lock=999"
-                alt="Hamburguesa estrella"
-                fetchPriority="high"
-                decoding="async"
-                className="animate-float relative z-10 h-full w-full rounded-full object-cover drop-shadow-[0_0_80px_rgba(251,191,36,0.45)]"
-              />
+              <div className="animate-float relative z-10 h-full w-full">
+                <Image
+                  src="/og-image.webp"
+                  alt="Hamburguesa estrella"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-contain drop-shadow-[0_0_80px_rgba(251,191,36,0.45)]"
+                />
+              </div>
             </div>
           </div>
         </div>
