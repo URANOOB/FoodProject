@@ -60,9 +60,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/graphics/dominios-kribe-logo.svg",
-    shortcut: "/graphics/dominios-kribe-logo.svg",
-    apple: "/graphics/dominios-kribe-logo.svg",
+    icon: "/graphics/logo.png",
+    shortcut: "/graphics/logo.png",
+    apple: "/graphics/logo.png",
   },
   manifest: "/site.webmanifest",
 }
@@ -77,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es-CO">
+    <html lang="es-CO" suppressHydrationWarning>
       <body className="font-sans antialiased">
         {children}
         <Analytics />

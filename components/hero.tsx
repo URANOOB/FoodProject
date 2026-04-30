@@ -5,80 +5,78 @@ import Link from "next/link"
 import Image from "next/image"
 
 export function Hero() {
+  const tickerText = "SABOR DE BARRIO • INGREDIENTES FRESCOS • CALIDAD PREMIUM • CARTA CALLEJERA • USAQUÉN BOGOTÁ • "
+
   return (
-    <section className="chalk-hero relative flex min-h-screen items-center justify-center overflow-hidden bg-black pt-20">
-      <div className="brush-stroke brush-stroke-left" />
-      <div className="brush-stroke brush-stroke-right" />
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-black pt-20">
+      <div className="absolute inset-0 z-0">
+        <div className="chalk-hero h-full w-full opacity-40"></div>
+      </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
-          <div className="order-1 text-center md:text-left">
-            <p className="mb-4 text-sm font-black uppercase tracking-[0.4em] text-primary">
-              Sabor callejero · Bogotá
-            </p>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex flex-col items-center text-center">
+          <p className="mb-6 text-xs font-black uppercase tracking-[0.5em] text-primary sm:text-sm animate-fade-in">
+            Usaquén • Bogotá
+          </p>
 
-            <h1 className="mb-4 text-5xl font-black uppercase tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
-              <span className="text-primary">DÖMINIÖS</span>
-              <br />
-              <span className="text-foreground">K·RIBE</span>
-            </h1>
+          <h1 className="mb-8 text-6xl font-black uppercase leading-[0.9] tracking-tighter sm:text-8xl md:text-9xl lg:text-[12rem] xl:text-[15rem]">
+            <span className="block text-primary drop-shadow-[0_10px_30px_rgba(251,191,36,0.3)]">DÖMINIÖS</span>
+            <span className="block text-foreground -mt-2 sm:-mt-6 md:-mt-10">K·RIBE</span>
+          </h1>
 
-            <p className="mx-auto mb-8 max-w-2xl text-xl font-light tracking-wide text-muted-foreground sm:text-2xl md:text-3xl">
-              Donde la calle se vuelve sabor
-            </p>
-
-            <p className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-foreground/80 sm:text-lg">
-              Hamburguesas gourmet, perros calientes, salchipapas, parrilla y pizzas artesanales preparadas con ingredientes frescos y mucho fuego.
-            </p>
-
-            <div className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row md:justify-start">
-              <a
-                href="tel:+573105554321"
-                className="group flex w-full items-center justify-center gap-3 rounded-lg bg-primary px-8 py-4 font-bold tracking-wider text-primary-foreground shadow-2xl shadow-primary/30 transition-all hover:bg-primary/90 sm:w-auto"
-              >
-                <Phone className="h-5 w-5" />
-                +57 310 555 4321
-              </a>
-              <Link
-                href="#menu"
-                className="group flex w-full items-center justify-center gap-2 rounded-lg border-2 border-primary px-8 py-4 font-bold tracking-wider text-primary transition-all hover:bg-primary hover:text-primary-foreground sm:w-auto"
-              >
-                VER CARTA
-                <FastArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-
-            <div className="mx-auto max-w-xl rounded-lg border-2 border-primary/30 bg-primary/10 p-5 backdrop-blur-sm md:mb-16 md:p-8">
-              <div className="flex items-center justify-center gap-4 md:gap-6">
-                <img src="/graphics/truck.svg" alt="Food truck" className="h-16 w-16 flex-shrink-0 object-contain md:h-20 md:w-20" />
-                <div className="text-left">
-                  <p className="mb-1 text-2xl font-black text-primary md:text-3xl lg:text-4xl">Abierto todos los días</p>
-                  <p className="text-base font-bold text-foreground md:text-lg lg:text-xl">Carrera 6A # 117-15, Usaquén</p>
-                  <p className="mt-1 text-sm text-muted-foreground md:text-base">12:00 - 22:30 h</p>
-                </div>
-              </div>
-            </div>
+          <div className="relative -mt-12 mb-16 h-64 w-full sm:h-80 md:h-[500px] lg:h-[600px] animate-float">
+            <Image
+              src="/graphics/pngtree-delicious-and-testy-cheese-burger-png-image_13659847.png"
+              alt="Döminiös Burger"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 80vw"
+              className="object-contain drop-shadow-[0_30px_100px_rgba(251,191,36,0.5)]"
+            />
           </div>
 
-          <div className="relative order-2 md:order-2">
-            <div className="relative flex h-[300px] w-full items-center justify-center sm:h-[360px] md:h-[640px]">
-              <div className="animate-float relative z-10 h-full w-full">
-                <Image
-                  src="/og-image.webp"
-                  alt="Hamburguesa estrella"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-contain drop-shadow-[0_0_80px_rgba(251,191,36,0.45)]"
-                />
+          <div className="max-w-2xl mb-12">
+            <p className="text-lg font-medium leading-relaxed text-foreground/90 sm:text-xl md:text-2xl">
+              Elevamos la comida callejera a una experiencia <span className="text-primary italic">premium</span>. Ingredientes frescos, fuego real y el auténtico sabor de Usaquén.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-6 sm:flex-row sm:gap-8">
+            <Link
+              href="#menu"
+              className="group relative overflow-hidden rounded-full bg-primary px-10 py-5 text-sm font-black uppercase tracking-widest text-primary-foreground transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(251,191,36,0.3)]"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Explorar Carta
+                <FastArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+            <a
+              href="tel:+573105554321"
+              className="group flex items-center gap-3 text-sm font-black uppercase tracking-widest text-foreground transition-all hover:text-primary"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-border transition-colors group-hover:border-primary">
+                <Phone className="h-4 w-4" />
               </div>
-            </div>
+              Pedir Ahora
+            </a>
           </div>
         </div>
+      </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <ArrowDown className="h-6 w-6 text-primary" />
+      {/* Infinite Ticker */}
+      <div className="absolute bottom-12 left-0 right-0 z-20 border-y border-primary/20 bg-black/40 py-4 backdrop-blur-sm">
+        <div className="overflow-hidden whitespace-nowrap">
+          <div className="animate-marquee inline-block whitespace-nowrap">
+            <span className="text-2xl font-black uppercase tracking-widest text-primary/80 md:text-4xl">
+              {tickerText.repeat(4)}
+            </span>
+          </div>
         </div>
+      </div>
+
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+        <ArrowDown className="h-5 w-5 text-primary" />
       </div>
     </section>
   )

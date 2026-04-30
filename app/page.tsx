@@ -20,7 +20,7 @@ export default function Home() {
         telephone: "+57-310-555-4321",
         servesCuisine: ["Comida callejera", "Hamburguesas", "Pizza", "Parrilla", "Colombiana"],
         priceRange: "$$",
-        logo: "https://dominioskribe.co/graphics/dominios-kribe-logo.svg",
+        logo: "https://dominioskribe.co/graphics/logo.png",
         address: {
           "@type": "PostalAddress",
           streetAddress: "Carrera 6A # 117-15",

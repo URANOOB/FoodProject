@@ -1,96 +1,75 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Instagram, Phone, Mail, MapPin } from "iconoir-react"
 
 export function Footer() {
-  return (
-    <footer className="border-t border-border bg-background py-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 grid gap-8 md:grid-cols-3">
-          <div>
-            <div className="mb-4 flex items-center gap-3">
-              <img src="/graphics/dominios-kribe-logo.svg" alt="Döminiös K·Ribe" className="h-12 w-12 object-contain" />
-              <div>
-                <h3 className="text-lg font-bold uppercase tracking-wider text-primary">Döminiös K·Ribe</h3>
-                <p className="text-xs tracking-widest text-muted-foreground">CARTA CALLEJERA · BOGOTÁ</p>
-              </div>
-            </div>
-            <p className="mb-3 text-sm text-muted-foreground">
-              Comida callejera con carácter en Usaquén: hamburguesas, perros, salchipapas, parrilla y pizza.
-            </p>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <img src="/graphics/truck.svg" alt="Food truck" className="h-8 w-8 object-contain" />
-              <span className="text-xs font-medium">Sabor de barrio, ingredientes frescos</span>
-            </div>
-          </div>
+  const [mounted, setMounted] = useState(false)
 
-          <div>
-            <h4 className="mb-4 font-bold tracking-wide text-foreground">ENLACES RÁPIDOS</h4>
-            <nav className="space-y-2">
-              <Link href="#menu" className="block text-muted-foreground transition-colors hover:text-primary">
-                Carta
-              </Link>
-              <Link href="#location" className="block text-muted-foreground transition-colors hover:text-primary">
-                Ubicación
-              </Link>
-              <Link href="#contact" className="block text-muted-foreground transition-colors hover:text-primary">
-                Contacto
-              </Link>
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const currentYear = mounted ? new Date().getFullYear() : ""
+
+  return (
+    <footer className="bg-background pt-32 pb-16 overflow-hidden border-t border-white/5">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mb-24 flex flex-col items-center justify-center text-center">
+          <div className="absolute -top-12 left-1/2 -translate-x-1/2 select-none opacity-[0.03] whitespace-nowrap pointer-events-none">
+            <span className="text-[15rem] font-black uppercase tracking-tighter sm:text-[20rem] md:text-[25rem]">DÖMINIÖS</span>
+          </div>
+          
+          <Link href="/" className="relative z-10 flex flex-col items-center group">
+            <img src="/graphics/logo.png" alt="Döminiös K·Ribe" className="h-20 w-auto mb-6 transition-transform duration-500 group-hover:scale-110" />
+            <h2 className="text-5xl font-black uppercase tracking-tighter text-primary sm:text-6xl md:text-7xl">
+              DÖMINIÖS <span className="text-foreground italic">K·RIBE</span>
+            </h2>
+            <p className="mt-4 text-xs font-black uppercase tracking-[0.5em] text-muted-foreground">
+              Donde la calle se vuelve sabor
+            </p>
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8 items-start mb-24">
+          <div className="flex flex-col items-center md:items-start space-y-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Navegación</p>
+            <nav className="flex flex-col items-center md:items-start gap-3 text-sm font-bold uppercase tracking-widest text-foreground">
+              <Link href="#menu" className="transition-colors hover:text-primary">Explorar Carta</Link>
+              <Link href="#location" className="transition-colors hover:text-primary">Ubicación</Link>
+              <Link href="#contact" className="transition-colors hover:text-primary">Contacto</Link>
             </nav>
           </div>
 
-          <div>
-            <h4 className="mb-4 font-bold tracking-wide text-foreground">CONTACTO</h4>
-            <div className="space-y-3">
-              <a
-                href="tel:+573105554321"
-                className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
-              >
-                <Phone className="h-4 w-4" />
-                +57 310 555 4321
-              </a>
-              <a
-                href="mailto:contacto@dominioskribe.co"
-                className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
-              >
-                <Mail className="h-4 w-4" />
-                contacto@dominioskribe.co
-              </a>
-              <p className="flex items-start gap-2 text-muted-foreground">
-                <MapPin className="mt-1 h-4 w-4 flex-shrink-0" />
-                Carrera 6A # 117-15, Usaquén, Bogotá
-              </p>
-            </div>
+          <div className="flex flex-col items-center md:items-center space-y-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Social</p>
+            <a 
+              href="https://www.instagram.com/dominioskribe" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-foreground transition-colors hover:text-primary"
+            >
+              <Instagram className="h-5 w-5" />
+              @dominioskribe
+            </a>
+          </div>
+
+          <div className="flex flex-col items-center md:items-end space-y-4 text-center md:text-right">
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Ubicación</p>
+            <address className="not-italic text-sm font-bold uppercase tracking-widest text-foreground">
+              Carrera 6A # 117-15<br />
+              Usaquén, Bogotá
+            </address>
           </div>
         </div>
 
-        <div className="border-t border-border pt-8">
-          <div className="mb-4 flex flex-col items-center justify-between gap-4 md:flex-row">
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-              <p>© {new Date().getFullYear()} Döminiös K·Ribe S.A.S. Todos los derechos reservados.</p>
-              <span className="hidden md:inline">•</span>
-              <Link href="/aviso-legal" className="transition-colors hover:text-primary">
-                Aviso legal
-              </Link>
-              <span>•</span>
-              <Link href="/politica-de-privacidad" className="transition-colors hover:text-primary">
-                Política de privacidad
-              </Link>
-              <span>•</span>
-              <Link href="/terminos-y-condiciones" className="transition-colors hover:text-primary">
-                Términos y condiciones
-              </Link>
-            </div>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://www.instagram.com/dominioskribe"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-foreground transition-all hover:bg-secondary/80 hover:text-primary"
-                aria-label="Instagram - Döminiös K·Ribe"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-            </div>
+        <div className="pt-12 border-t border-white/5 flex flex-col items-center justify-between gap-6 md:flex-row text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/60">
+          <p>© {currentYear} Döminiös K·Ribe S.A.S. • Bogotá D.C.</p>
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link href="/aviso-legal" className="hover:text-primary transition-colors">Aviso Legal</Link>
+            <Link href="/politica-de-privacidad" className="hover:text-primary transition-colors">Privacidad</Link>
+            <Link href="/terminos-y-condiciones" className="hover:text-primary transition-colors">Términos</Link>
           </div>
         </div>
       </div>
