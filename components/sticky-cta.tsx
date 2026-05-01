@@ -1,16 +1,16 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Phone, MapPin } from "iconoir-react"
+import { Phone, Whatsapp, Xmark, Menu } from "iconoir-react"
 
 export function StickyCTA() {
   const [isVisible, setIsVisible] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       setIsVisible(window.scrollY > 300)
     }
-
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -18,27 +18,91 @@ export function StickyCTA() {
   if (!isVisible) return null
 
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-lg animate-in fade-in slide-in-from-bottom-8 duration-500">
-      <div className="relative overflow-hidden rounded-full bg-black/90 p-2.5 backdrop-blur-2xl border-2 border-primary/30 shadow-[0_0_40px_rgba(251,191,36,0.15)] animate-pulse-gold">
-        <div className="flex items-center justify-between gap-4 px-2">
-          <div className="flex items-center gap-3 pl-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
-              <MapPin className="h-6 w-6" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary leading-none mb-1">Usaquén</span>
-              <span className="text-xs font-bold text-foreground leading-none whitespace-nowrap">Abierto ahora</span>
-            </div>
+    <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-40 flex items-center gap-3 animate-in fade-in slide-in-from-bottom-10 duration-700">
+      {/* Badge de Info / Etiqueta de Acción (Espacio compartido) */}
+      <div className="relative h-10 flex items-center bg-black/80 backdrop-blur-xl border border-white/10 px-4 rounded-xl shadow-2xl min-w-cta-badge md:min-w-cta-badge-md overflow-hidden sm:h-12 sm:rounded-2xl">
+        {/* Información de Ubicación (Se oculta al hacer hover sobre el botón o al abrir) */}
+        <div className={`flex flex-col items-start transition-all duration-300 ${isOpen ? "opacity-0 -translate-y-10" : "opacity-100 translate-y-0"}`}>
+          <span className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-primary leading-none mb-0.5 sm:mb-1">Usaquén, Bogotá</span>
+          <div className="flex items-center gap-1.5">
+            <div className="h-1 w-1 rounded-full bg-green-500 animate-pulse sm:h-1.5 sm:w-1.5" />
+            <span className="text-[7px] md:text-[8px] font-bold text-foreground/80 uppercase tracking-tighter">Abierto ahora</span>
           </div>
+        </div>
 
+        {/* Etiqueta "Pedir ahora" (Solo aparece cuando NO está abierto) */}
+        {!isOpen && (
+          <div className="absolute inset-0 flex items-center px-4 pointer-events-none">
+            <span className="text-[9px] font-black uppercase tracking-[0.2em] text-primary transition-all duration-300 opacity-0 group-hover-parent:opacity-100">
+              Pedir ahora
+            </span>
+          </div>
+        )}
+
+        {/* Etiqueta de "Cerrar" o "Opciones" cuando está abierto */}
+        {isOpen && (
+          <div className="absolute inset-0 flex items-center px-4 animate-in fade-in slide-in-from-bottom-2">
+            <span className="text-[9px] font-black uppercase tracking-[0.2em] text-white">
+              Opciones
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Contenedor de Acciones Expandible */}
+      <div className="relative flex flex-col items-center">
+        {/* Opciones que se despliegan arriba */}
+        <div 
+          className={`absolute bottom-full mb-3 transition-all duration-500 ease-out flex flex-col items-center gap-2 sm:gap-3 ${
+            isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-10 pointer-events-none"
+          }`}
+        >
+          {/* WhatsApp */}
+          <a
+            href="https://wa.me/573105554321"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative flex h-11 w-11 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_rgba(37,211,102,0.4)] transition-all hover:scale-110 active:scale-95 sm:h-14 sm:w-14"
+            aria-label="WhatsApp"
+          >
+            <Whatsapp className="h-5 w-5 transition-transform group-hover:scale-110 sm:h-7 sm:w-7" />
+            <div className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20 pointer-events-none" />
+            <span className="absolute right-full mr-4 rounded-lg bg-black/90 px-3 py-1.5 text-[9px] font-black uppercase tracking-widest text-white whitespace-nowrap shadow-2xl">
+              WhatsApp
+            </span>
+          </a>
+
+          {/* Llamada Directa */}
           <a
             href="tel:+573105554321"
-            className="group flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-xs font-black uppercase tracking-widest text-primary-foreground shadow-2xl transition-all hover:scale-105 active:scale-95"
+            className="group relative flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_10px_30px_rgba(251,191,36,0.4)] transition-all hover:scale-110 active:scale-95 sm:h-14 sm:w-14"
+            aria-label="Llamar ahora"
           >
-            <Phone className="h-4 w-4" />
-            <span>Pedir ahora</span>
+            <Phone className="h-5 w-5 transition-transform group-hover:scale-110 sm:h-7 sm:w-7" />
+            <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20 pointer-events-none" />
+            <span className="absolute right-full mr-4 rounded-lg bg-black/90 px-3 py-1.5 text-[9px] font-black uppercase tracking-widest text-white whitespace-nowrap shadow-2xl">
+              Llamar
+            </span>
           </a>
         </div>
+
+        {/* Botón Principal (Toggle) */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={`group relative flex h-14 w-14 items-center justify-center rounded-full transition-all duration-500 shadow-[0_15px_40px_rgba(251,191,36,0.4)] sm:h-16 sm:w-16 ${
+            isOpen ? "bg-black text-white" : "bg-primary text-primary-foreground"
+          }`}
+          aria-label={isOpen ? "Cerrar opciones" : "Ver opciones de contacto"}
+        >
+          {isOpen ? (
+            <Xmark className="h-6 w-6 transition-all animate-in zoom-in rotate-90 sm:h-8 sm:w-8" />
+          ) : (
+            <>
+              <Menu className="h-6 w-6 transition-all group-hover:scale-110 sm:h-8 sm:w-8" />
+              <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20 pointer-events-none" />
+            </>
+          )}
+        </button>
       </div>
     </div>
   )

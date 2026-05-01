@@ -1,14 +1,13 @@
 "use client"
 
-import { ArrowDown, FastArrowRight, Phone } from "iconoir-react"
+import { FastArrowRight } from "iconoir-react"
 import Link from "next/link"
 import Image from "next/image"
 
 export function Hero() {
-  const tickerText = "SABOR DE BARRIO • INGREDIENTES FRESCOS • CALIDAD PREMIUM • CARTA CALLEJERA • USAQUÉN BOGOTÁ • "
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-black pt-20">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-black pt-40 pb-5 md:pt-40">
       <div className="absolute inset-0 z-0">
         <div className="chalk-hero h-full w-full opacity-40"></div>
       </div>
@@ -24,7 +23,7 @@ export function Hero() {
             <span className="block text-foreground -mt-2 sm:-mt-6 md:-mt-10">K·RIBE</span>
           </h1>
 
-          <div className="relative -mt-12 mb-16 h-64 w-full sm:h-80 md:h-[500px] lg:h-[600px] animate-float">
+          <div className="relative mt-1 mb-6 h-64 w-full sm:-mt-12 sm:mb-16 sm:h-80 md:h-hero-md lg:h-hero-lg animate-float">
             <Image
               src="/graphics/pngtree-delicious-and-testy-cheese-burger-png-image_13659847.png"
               alt="Döminiös Burger"
@@ -51,32 +50,8 @@ export function Hero() {
                 <FastArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
-            <a
-              href="tel:+573105554321"
-              className="group flex items-center gap-3 text-sm font-black uppercase tracking-widest text-foreground transition-all hover:text-primary"
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-border transition-colors group-hover:border-primary">
-                <Phone className="h-4 w-4" />
-              </div>
-              Pedir Ahora
-            </a>
           </div>
         </div>
-      </div>
-
-      {/* Infinite Ticker */}
-      <div className="absolute bottom-12 left-0 right-0 z-20 border-y border-primary/20 bg-black/40 py-4 backdrop-blur-sm">
-        <div className="overflow-hidden whitespace-nowrap">
-          <div className="animate-marquee inline-block whitespace-nowrap">
-            <span className="text-2xl font-black uppercase tracking-widest text-primary/80 md:text-4xl">
-              {tickerText.repeat(4)}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-        <ArrowDown className="h-5 w-5 text-primary" />
       </div>
     </section>
   )

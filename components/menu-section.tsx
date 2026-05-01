@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
 import { CoffeeCup, FireFlame, PizzaSlice, Star, Truck } from "iconoir-react"
 
@@ -225,7 +225,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
 
   return (
     <article className="group relative flex flex-col bg-card/30 p-4 rounded-3xl border border-white/5 transition-all hover:bg-card/50 hover:border-primary/20">
-      <div className="relative mb-6 aspect-square w-full">
+      <div className="relative mb-12 aspect-square w-full">
         {item.featured && (
           <div className="absolute -top-2 -left-2 z-20 rounded-full bg-primary px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-primary-foreground shadow-xl">
             TOP CHOICE
@@ -277,68 +277,130 @@ function MenuItemCard({ item }: { item: MenuItem }) {
 
 export function MenuSection() {
   const [activeCategory, setActiveCategory] = useState(menuCategories[0].id)
+  const [showCategoryIndicator, setShowCategoryIndicator] = useState(true)
+  const [showItemsIndicator, setShowItemsIndicator] = useState(true)
+
   const activeMenu = useMemo(
     () => menuCategories.find((category) => category.id === activeCategory) ?? menuCategories[0],
     [activeCategory],
   )
 
+  const handleCategoryScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const target = e.currentTarget
+    const isAtEnd = target.scrollLeft + target.clientWidth >= target.scrollWidth - 20
+    setShowCategoryIndicator(!isAtEnd)
+  }
+
+  const handleItemsScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const target = e.currentTarget
+    const isAtBottom = target.scrollTop + target.clientHeight >= target.scrollHeight - 20
+    setShowItemsIndicator(!isAtBottom)
+  }
+
+  // Reset items indicator when category changes
+  useEffect(() => {
+    setShowItemsIndicator(true)
+  }, [activeCategory])
+
   return (
-    <section id="menu" className="relative overflow-hidden bg-background py-24 md:py-32">
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="menu" className="relative overflow-hidden bg-background py-16 md:py-32">
+      <div className="relative z-10 mx-auto max-w-7xl px-10 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-20">
           <div className="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.4em] text-primary mb-2">Nuestro Menú</p>
-              <h2 className="text-7xl font-black uppercase leading-none tracking-tighter text-foreground sm:text-8xl md:text-9xl">
+              <h2 className="text-6xl font-black uppercase leading-none tracking-tighter text-foreground sm:text-8xl md:text-9xl">
                 CARTA <span className="text-primary italic">CALLEJERA</span>
               </h2>
             </div>
-            <p className="max-w-md text-sm font-medium leading-relaxed text-muted-foreground md:text-right">
-              Sabor auténtico de barrio elevado a estándares premium. Cada plato es una declaración de intenciones.
+            <p className="max-w-md text-base font-medium leading-relaxed text-muted-foreground md:text-right">
+              Fusionamos la mística de la calle con la excelencia premium. Una propuesta audaz donde el fuego es el protagonista y la calidad, nuestra única regla.
             </p>
           </div>
         </div>
 
-        {/* Category tabs */}
-        <div className="mb-16 flex gap-3 overflow-x-auto pb-4 no-scrollbar">
-          {menuCategories.map((category) => {
-            const Icon = category.icon
-            const isActive = category.id === activeCategory
+        {/* Category tabs - Tactile and clean */}
+        <div className="relative mb-16">
+          <div 
+            onScroll={handleCategoryScroll}
+            className="group relative -mx-10 px-10 overflow-x-auto pb-6 scrollbar-hide md:mx-0 md:px-0"
+          >
+            <div className="flex w-max gap-4 md:w-full md:flex-wrap md:justify-center">
+              {menuCategories.map((category) => {
+                const Icon = category.icon
+                const isActive = category.id === activeCategory
 
-            return (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`flex shrink-0 items-center gap-3 rounded-full border px-8 py-4 text-xs font-black uppercase tracking-widest transition-all ${
-                  isActive
-                    ? "border-primary bg-primary text-primary-foreground shadow-2xl shadow-primary/20"
-                    : "border-border bg-card/50 text-foreground hover:border-primary/50"
-                }`}
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`flex flex-col items-center justify-center gap-3 rounded-2xl border px-6 py-5 min-w-tab transition-all ${
+                      isActive
+                        ? "border-primary bg-primary text-primary-foreground shadow-xl shadow-primary/20 scale-105"
+                        : "border-white/10 bg-white/5 text-foreground hover:bg-white/10 hover:border-white/20"
+                    }`}
+                  >
+                    <Icon className={`h-8 w-8 transition-transform ${isActive ? "scale-110" : ""}`} />
+                    <span className="text-[10px] font-black uppercase tracking-widest">
+                      {category.label}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+          
+          {/* Mobile scroll indicator - Precisely centered at 50% */}
+          <div className={`absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none md:hidden transition-opacity duration-300 ${showCategoryIndicator ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 backdrop-blur-md border border-primary/40 shadow-[0_0_20px_rgba(251,191,36,0.2)] animate-pulse-horizontal">
+              <svg 
+                className="h-6 w-6 text-primary drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
               >
-                <Icon className="h-4 w-4" />
-                {category.label}
-              </button>
-            )
-          })}
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
         </div>
 
         {/* Active category title */}
-        <div className="mb-12 flex items-center justify-between">
+        <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
           <h3 className="text-4xl font-black uppercase tracking-tighter text-foreground sm:text-6xl md:text-7xl">
             {activeMenu.title}
           </h3>
           <div className="h-px flex-1 mx-8 bg-border hidden sm:block"></div>
-          <span className="text-xs font-black uppercase tracking-widest text-primary">
+          <span className="text-xs font-black uppercase tracking-widest text-primary shrink-0">
             {activeMenu.items.length} PLATOS
           </span>
         </div>
 
-        {/* Items grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8">
-          {activeMenu.items.map((item) => (
-            <MenuItemCard key={item.name} item={item} />
-          ))}
+        {/* Items grid container with limited height on mobile */}
+        <div className="relative">
+          <div 
+            onScroll={handleItemsScroll}
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8 max-h-[75vh] overflow-y-auto custom-scrollbar md:max-h-none md:overflow-visible overscroll-contain"
+          >
+            {activeMenu.items.map((item) => (
+              <MenuItemCard key={item.name} item={item} />
+            ))}
+          </div>
+
+          {/* Mobile vertical scroll indicator */}
+          <div className={`absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none md:hidden transition-opacity duration-300 ${showItemsIndicator ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 backdrop-blur-md border border-primary/40 shadow-[0_0_20px_rgba(251,191,36,0.2)] animate-bounce">
+              <svg 
+                className="h-6 w-6 text-primary drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     </section>

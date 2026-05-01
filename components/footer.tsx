@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Instagram, Phone, Mail, MapPin } from "iconoir-react"
+import Image from "next/image"
+import { Instagram } from "iconoir-react"
 
 export function Footer() {
   const [mounted, setMounted] = useState(false)
@@ -14,15 +15,23 @@ export function Footer() {
   const currentYear = mounted ? new Date().getFullYear() : ""
 
   return (
-    <footer className="bg-background pt-32 pb-16 overflow-hidden border-t border-white/5">
+    <footer className="bg-background pt-2 pb-16 overflow-hidden border-t border-white/5">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative mb-24 flex flex-col items-center justify-center text-center">
-          <div className="absolute -top-12 left-1/2 -translate-x-1/2 select-none opacity-[0.03] whitespace-nowrap pointer-events-none">
-            <span className="text-[15rem] font-black uppercase tracking-tighter sm:text-[20rem] md:text-[25rem]">DÖMINIÖS</span>
+          <div className="absolute inset-0 flex items-center justify-center select-none opacity-[0.03] whitespace-nowrap pointer-events-none overflow-hidden">
+            <span className="text-[20rem] font-black uppercase tracking-tighter sm:text-[20rem] md:text-[25rem]">DÖMINIÖS</span>
           </div>
-          
+
           <Link href="/" className="relative z-10 flex flex-col items-center group">
-            <img src="/graphics/logo.png" alt="Döminiös K·Ribe" className="h-20 w-auto mb-6 transition-transform duration-500 group-hover:scale-110" />
+            <div className="relative h-40 w-40 mb-2 transition-transform duration-500 group-hover:scale-110 sm:h-48 sm:w-48">
+              <Image 
+                src="/graphics/logo.png" 
+                alt="Döminiös K·Ribe" 
+                fill 
+                sizes="(max-width: 640px) 160px, 192px"
+                className="object-contain" 
+              />
+            </div>
             <h2 className="text-5xl font-black uppercase tracking-tighter text-primary sm:text-6xl md:text-7xl">
               DÖMINIÖS <span className="text-foreground italic">K·RIBE</span>
             </h2>

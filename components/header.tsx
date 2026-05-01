@@ -1,28 +1,59 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, Xmark, MapPin, Phone } from "iconoir-react"
+import Image from "next/image"
+import { Menu, Xmark, Phone } from "iconoir-react"
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
   const navItems = [
     { href: "#menu", label: "Carta" },
     { href: "#location", label: "Ubicación" },
     { href: "#contact", label: "Contacto" },
   ]
 
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== "undefined") {
+        // Si el menú móvil está abierto, no escondemos la navbar
+        if (isOpen) return
+
+        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+          // Scrolling down
+          setIsVisible(false)
+        } else {
+          // Scrolling up
+          setIsVisible(true)
+        }
+        setLastScrollY(window.scrollY)
+      }
+    }
+
+    window.addEventListener("scroll", controlNavbar)
+    return () => window.removeEventListener("scroll", controlNavbar)
+  }, [lastScrollY, isOpen])
+
   return (
-    <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl">
-      <div className="relative overflow-hidden rounded-full bg-black/70 p-2 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
-        <div className="flex items-center justify-between gap-2 px-2 md:px-6">
+    <header 
+      className={`fixed left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl transition-all duration-500 ease-in-out ${
+        isVisible ? "top-6" : "-top-32"
+      }`}
+    >
+      <div className="relative rounded-3xl bg-black/70 p-1 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+        <div className="flex h-16 items-center justify-between gap-2 px-2 md:px-5">
           <Link href="/" className="flex items-center gap-4 group shrink-0">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/10 transition-all duration-500 group-hover:scale-110 group-hover:bg-primary/20 shadow-[0_0_30px_rgba(251,191,36,0.2)] group-hover:shadow-[0_0_45px_rgba(251,191,36,0.4)] border border-white/10">
-              <img src="/graphics/logo.png" alt="Döminiös" className="h-12 w-auto object-contain" />
-            </div>
-            <div className="hidden flex-col sm:flex">
-              <span className="text-xl font-black uppercase tracking-tighter text-primary leading-none">Döminiös</span>
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground mt-1">K·Ribe</span>
+            <div className="relative h-24 w-24 md:h-28 md:w-28 transition-all duration-500 group-hover:scale-110 group-hover:brightness-125 group-hover:drop-shadow-[0_0_30px_rgba(251,191,36,0.8)]">
+              <Image 
+                src="/graphics/logo.png" 
+                alt="Döminiös" 
+                fill 
+                sizes="(max-width: 768px) 96px, 112px"
+                className="object-contain" 
+              />
             </div>
           </Link>
 
@@ -64,16 +95,12 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-3xl bg-white/5 px-6 py-4 text-xs font-black uppercase tracking-widest text-foreground transition-all hover:bg-primary hover:text-primary-foreground"
+                className="rounded-2xl bg-white/5 px-8 py-4 text-xs font-black uppercase tracking-widest text-foreground transition-all hover:bg-primary hover:text-primary-foreground"
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <div className="flex items-center gap-2 px-6 py-4 text-[10px] font-black uppercase tracking-widest text-primary border-t border-white/5">
-              <MapPin className="h-3 w-3" />
-              <span>Usaquén, Bogotá</span>
-            </div>
           </nav>
         )}
       </div>
