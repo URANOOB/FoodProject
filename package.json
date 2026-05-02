@@ -46,7 +46,6 @@
     "embla-carousel-react": "8.5.1",
     "iconoir-react": "latest",
     "input-otp": "1.4.1",
-    "lucide-react": "^0.454.0",
     "next": "^16.2.4",
     "next-themes": "latest",
     "react": "^19.2.5",
@@ -69,7 +68,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.4",
-    "postcss": "^8.5",
+    "postcss": "^8.5.13",
     "sharp-cli": "^5.2.0",
     "svgo": "^4.0.0",
     "tailwindcss": "^4.1.9",
@@ -80,7 +79,15 @@
     "onlyBuiltDependencies": [
       "@tailwindcss/oxide",
       "sharp"
-    ]
+    ],
+    "overrides": {
+      "glob": "^11.1.0",
+      "postcss": "^8.5.13"
+    }
+  },
+  "overrides": {
+    "glob": "^11.1.0",
+    "postcss": "^8.5.13"
   },
   "description": "<div align=\"center\">",
   "main": "index.js",
