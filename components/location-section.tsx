@@ -2,26 +2,19 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { SITE_CONFIG } from "@/lib/constants"
 import { MapPin, Clock, Calendar } from "iconoir-react"
-
-// CONFIGURACIÓN DE UBICACIÓN
-const LOCATION_CONFIG = {
-  lat: 4.694934772171829, // Latitud
-  lng: -74.03180842022515, // Longitud
-  address: "Carrera 6A # 117-15",
-  city: "Usaquén, Bogotá",
-  mapZoom: 16
-}
 
 export function LocationSection() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
   }, [])
 
   // Genera la URL de Google Maps con pin basado en las coordenadas
-  const mapUrl = `https://maps.google.com/maps?q=${LOCATION_CONFIG.lat},${LOCATION_CONFIG.lng}&z=${LOCATION_CONFIG.mapZoom}&output=embed`
+  const mapUrl = `https://maps.google.com/maps?q=${SITE_CONFIG.location.lat},${SITE_CONFIG.location.lng}&z=${SITE_CONFIG.location.mapZoom}&output=embed`
 
   return (
     <section id="location" className="bg-card py-16 md:py-20">
@@ -34,7 +27,7 @@ export function LocationSection() {
         </div>
 
         <div className="grid items-stretch gap-12 lg:grid-cols-2">
-          <div className="relative mx-auto w-full max-w-md aspect-portrait overflow-hidden rounded-3xl border border-white/5 bg-background shadow-2xl sm:aspect-square lg:mx-0 lg:max-w-none">
+          <div className="relative w-full aspect-3/4 overflow-hidden rounded-[2.5rem] border border-white/5 bg-background shadow-2xl sm:aspect-square lg:h-full lg:max-w-none">
             {mounted ? (
               <iframe
                 title="Mapa de ubicación - Döminiös K·Ribe"
@@ -56,8 +49,8 @@ export function LocationSection() {
                   <MapPin className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-black uppercase tracking-tight text-primary sm:text-xl">{LOCATION_CONFIG.city}</h3>
-                  <p className="text-xs font-medium text-white/90 sm:text-sm">{LOCATION_CONFIG.address}</p>
+                  <h3 className="text-lg font-black uppercase tracking-tight text-primary sm:text-xl">{SITE_CONFIG.contact.city}</h3>
+                  <p className="text-xs font-medium text-white/90 sm:text-sm">{SITE_CONFIG.contact.address}</p>
                 </div>
               </div>
             </div>
@@ -72,9 +65,9 @@ export function LocationSection() {
                 <div>
                   <h3 className="text-sm font-black uppercase tracking-tight text-foreground sm:text-2xl">Horarios</h3>
                   <p className="text-xs font-medium text-muted-foreground sm:text-lg">
-                    Lunes a Domingo
+                    {SITE_CONFIG.openingHours.days}
                     <br />
-                    <span className="text-foreground">12:00 PM — 10:30 PM</span>
+                    <span className="text-foreground">{SITE_CONFIG.openingHours.hours}</span>
                   </p>
                 </div>
               </div>
@@ -99,9 +92,19 @@ export function LocationSection() {
               <p className="text-primary-foreground/90 font-medium mb-6">
                 Llevamos la parrilla a tu fiesta. Catering personalizado con el estilo de Döminiös K·Ribe.
               </p>
-              <Link href="#contact" className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-primary-foreground border-b-2 border-primary-foreground pb-1">
-                Cotizar ahora
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
+                <Link href="#contact" className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-primary-foreground border-b-2 border-primary-foreground pb-1 hover:opacity-80 transition-opacity">
+                  Cotizar ahora
+                </Link>
+                <a 
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${SITE_CONFIG.location.lat},${SITE_CONFIG.location.lng}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-primary-foreground border-b-2 border-primary-foreground pb-1 hover:opacity-80 transition-opacity"
+                >
+                  Cómo llegar
+                </a>
+              </div>
             </div>
           </div>
         </div>

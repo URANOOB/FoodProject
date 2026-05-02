@@ -1,16 +1,16 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Analytics } from "@vercel/analytics/next"
+import { SITE_CONFIG } from "@/lib/constants"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dominioskribe.co"),
+  metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: "Döminiös K·Ribe | Comida callejera con sabor en Usaquén, Bogotá",
-    template: "%s | Döminiös K·Ribe",
+    default: `${SITE_CONFIG.name} | Comida callejera con sabor en Usaquén, Bogotá`,
+    template: `%s | ${SITE_CONFIG.name}`,
   },
-  description:
-    "Döminiös K·Ribe: hamburguesas, perros calientes, salchipapas, parrilla y pizza artesanal en Usaquén, Bogotá. Carta callejera con ingredientes frescos.",
+  description: SITE_CONFIG.description,
   keywords: [
     "döminiös k-ribe",
     "comida callejera bogotá",
@@ -26,27 +26,36 @@ export const metadata: Metadata = {
     "carta callejera",
     "street food bogotá",
   ],
-  authors: [{ name: "Döminiös K·Ribe" }],
-  creator: "Döminiös K·Ribe",
-  publisher: "Döminiös K·Ribe S.A.S.",
+  authors: [{ name: SITE_CONFIG.name }],
+  creator: SITE_CONFIG.name,
+  publisher: `${SITE_CONFIG.name} S.A.S.`,
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    title: "Döminiös K·Ribe | Carta callejera en Bogotá",
+    title: `${SITE_CONFIG.name} | Carta callejera en Bogotá`,
     description:
       "Hamburguesas, perros, salchipapas, parrilla y pizza artesanal en Usaquén. Sabor de barrio con ingredientes frescos.",
-    url: "https://dominioskribe.co",
-    siteName: "Döminiös K·Ribe",
+    url: SITE_CONFIG.url,
+    siteName: SITE_CONFIG.name,
     locale: "es_CO",
     type: "website",
+    images: [
+      {
+        url: SITE_CONFIG.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${SITE_CONFIG.name} - Comida callejera con sabor en Bogotá`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Döminiös K·Ribe | Carta callejera en Bogotá",
+    title: `${SITE_CONFIG.name} | Carta callejera en Bogotá`,
     description: "Comida callejera con carácter en Usaquén, Bogotá.",
+    images: [SITE_CONFIG.ogImage],
   },
   robots: {
     index: true,

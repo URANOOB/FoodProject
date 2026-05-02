@@ -7,7 +7,7 @@ import Image from "next/image"
 export function Hero() {
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-black pt-40 pb-5 md:pt-40">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-black pt-40 pb-15 md:pt-40">
       <div className="absolute inset-0 z-0">
         <div className="chalk-hero h-full w-full opacity-40"></div>
       </div>
@@ -23,14 +23,25 @@ export function Hero() {
             <span className="block text-foreground -mt-2 sm:-mt-6 md:-mt-10">K·RIBE</span>
           </h1>
 
-          <div className="relative mt-1 mb-6 h-64 w-full sm:-mt-12 sm:mb-16 sm:h-80 md:h-hero-md lg:h-hero-lg animate-float">
+          <div className="relative mt-2 mb-6 h-72 w-full sm:mt-5 sm:mb-16 sm:h-80 md:h-hero-md lg:h-hero-lg animate-float">
+            {/* Resplandor dinámico basado en la propia imagen (Vibrant Glow) */}
+            <Image
+              src="/graphics/pngtree-delicious-and-testy-cheese-burger-png-image_13659847.png"
+              alt=""
+              fill
+              sizes="(max-width: 768px) 100vw, 80vw"
+              className="object-contain blur-3xl opacity-50 scale-110 pointer-events-none select-none"
+              aria-hidden="true"
+            />
+            {/* Imagen principal con una sombra de apoyo sutil */}
             <Image
               src="/graphics/pngtree-delicious-and-testy-cheese-burger-png-image_13659847.png"
               alt="Döminiös Burger"
               fill
               priority
+              loading="eager"
               sizes="(max-width: 768px) 100vw, 80vw"
-              className="object-contain drop-shadow-[0_30px_100px_rgba(251,191,36,0.5)]"
+              className="relative object-contain drop-shadow-[0_15px_30px_rgba(251,191,36,0.4)]"
             />
           </div>
 

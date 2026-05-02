@@ -1,5 +1,4 @@
-"use client"
-
+import { SITE_CONFIG } from "@/lib/constants"
 import { Phone, Mail, Instagram } from "iconoir-react"
 
 export function ContactSection() {
@@ -22,50 +21,50 @@ export function ContactSection() {
         <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
           {/* Email Card - Top and Full Width on Mobile */}
           <div className="group relative col-span-2 flex flex-col items-center justify-center space-y-4 rounded-[2.5rem] border border-white/5 bg-card/30 p-8 text-center transition-all hover:bg-card/50 hover:border-primary/20 hover:-translate-y-2 lg:col-span-1 lg:p-10 lg:space-y-6">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-2xl shadow-primary-30 transition-transform group-hover:scale-110 lg:h-16 lg:w-16">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-2xl shadow-primary/30 transition-transform group-hover:scale-110 lg:h-16 lg:w-16">
               <Mail className="h-7 w-7 lg:h-8 lg:w-8" />
             </div>
             <div className="w-full">
               <p className="mb-2 text-[10px] font-black uppercase tracking-[0.3em] text-primary">Escríbenos</p>
               <a
-                href="mailto:contacto@dominioskribe.co"
+                href={`mailto:${SITE_CONFIG.contact.email}`}
                 className="block break-all text-lg font-black text-foreground transition-colors hover:text-primary sm:text-2xl"
               >
-                contacto@dominioskribe.co
+                {SITE_CONFIG.contact.email}
               </a>
             </div>
           </div>
 
           {/* Phone Card - Left on Mobile */}
           <div className="group relative col-span-1 flex flex-col items-center justify-center space-y-4 rounded-[2.5rem] border border-white/5 bg-card/30 p-6 text-center transition-all hover:bg-card/50 hover:border-primary/20 hover:-translate-y-2 lg:p-10 lg:space-y-6">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-2xl shadow-primary-30 transition-transform group-hover:scale-110 lg:h-16 lg:w-16">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-2xl shadow-primary/30 transition-transform group-hover:scale-110 lg:h-16 lg:w-16">
               <Phone className="h-6 w-6 lg:h-8 lg:w-8" />
             </div>
             <div>
               <p className="mb-1 text-[8px] font-black uppercase tracking-[0.2em] text-primary lg:mb-2 lg:text-[10px] lg:tracking-[0.3em]">Línea Caliente</p>
               <a
-                href="tel:+573105554321"
+                href={SITE_CONFIG.links.phone}
                 className="block text-sm font-black text-foreground transition-colors hover:text-primary sm:text-xl md:text-2xl"
               >
-                +57 310 555 4321
+                {SITE_CONFIG.contact.phone}
               </a>
             </div>
           </div>
 
           {/* Instagram Card - Right on Mobile */}
           <div className="group relative col-span-1 flex flex-col items-center justify-center space-y-4 rounded-[2.5rem] border border-white/5 bg-card/30 p-6 text-center transition-all hover:bg-card/50 hover:border-primary/20 hover:-translate-y-2 lg:p-10 lg:space-y-6">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-2xl shadow-primary-30 transition-transform group-hover:scale-110 lg:h-16 lg:w-16">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-2xl shadow-primary/30 transition-transform group-hover:scale-110 lg:h-16 lg:w-16">
               <Instagram className="h-6 w-6 lg:h-8 lg:w-8" />
             </div>
             <div>
               <p className="mb-1 text-[8px] font-black uppercase tracking-[0.2em] text-primary lg:mb-2 lg:text-[10px] lg:tracking-[0.3em]">Instagram</p>
               <a
-                href="https://www.instagram.com/dominioskribe"
+                href={SITE_CONFIG.links.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-sm font-black text-foreground transition-colors hover:text-primary sm:text-xl md:text-2xl"
               >
-                @dominioskribe
+                @{SITE_CONFIG.links.instagram.split('/').pop()}
               </a>
             </div>
           </div>

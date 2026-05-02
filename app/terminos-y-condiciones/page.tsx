@@ -2,10 +2,11 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { ArrowLeft } from "iconoir-react"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata = {
   title: "Términos y condiciones",
-  description: "Términos y condiciones de Döminiös K·Ribe S.A.S.",
+  description: `Términos y condiciones de ${SITE_CONFIG.name} S.A.S.`,
 }
 
 export default function TerminosPage() {
@@ -21,7 +22,7 @@ export default function TerminosPage() {
 
           <div className="mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">Términos y condiciones</h1>
-            <p className="text-muted-foreground">Döminiös K·Ribe S.A.S.</p>
+            <p className="text-muted-foreground">{SITE_CONFIG.name} S.A.S.</p>
           </div>
 
           <div className="prose prose-invert prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary max-w-none space-y-8">
@@ -29,7 +30,7 @@ export default function TerminosPage() {
               <h2 className="text-2xl font-bold text-foreground mb-4">1. Ámbito de aplicación</h2>
               <div className="space-y-2 text-muted-foreground text-sm">
                 <p>
-                  Estos términos rigen la relación comercial entre Döminiös K·Ribe S.A.S. y sus clientes para la venta de comidas y bebidas en el local o en eventos de catering.
+                  Estos términos rigen la relación comercial entre {SITE_CONFIG.name} S.A.S. y sus clientes para la venta de comidas y bebidas en el local o en eventos de catering.
                 </p>
                 <p>Cualquier condición distinta del cliente solo será válida si la aceptamos expresamente por escrito.</p>
               </div>
@@ -73,7 +74,7 @@ export default function TerminosPage() {
             <section className="bg-card p-6 rounded-lg border border-border">
               <h2 className="text-2xl font-bold text-foreground mb-4">6. Horario y ubicación</h2>
               <div className="space-y-2 text-muted-foreground text-sm">
-                <p>Atendemos todos los días en Carrera 6A # 117-15, Usaquén, Bogotá, de 12:00 a 22:30 h.</p>
+                <p>Atendemos todos los días en {SITE_CONFIG.contact.address}, {SITE_CONFIG.contact.city}, de {SITE_CONFIG.openingHours.hours.replace(' PM', '').replace(' — ', ' a ')} h.</p>
                 <p>Podemos modificar horarios o cerrar temporalmente por mantenimiento, eventos o motivos operativos, avisando con anticipación por nuestras redes.</p>
               </div>
             </section>
@@ -130,8 +131,8 @@ export default function TerminosPage() {
               <h2 className="text-2xl font-bold text-foreground mb-4">¿Preguntas sobre estos términos?</h2>
               <div className="space-y-2 text-muted-foreground text-sm">
                 <p>Contáctanos:</p>
-                <p><strong className="text-foreground">Teléfono:</strong> <a href="tel:+573105554321" className="text-primary hover:underline">+57 310 555 4321</a></p>
-                <p><strong className="text-foreground">Correo:</strong> <a href="mailto:contacto@dominioskribe.co" className="text-primary hover:underline">contacto@dominioskribe.co</a></p>
+                <p><strong className="text-foreground">Teléfono:</strong> <a href={SITE_CONFIG.links.phone} className="text-primary hover:underline">{SITE_CONFIG.contact.phone}</a></p>
+                <p><strong className="text-foreground">Correo:</strong> <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-primary hover:underline">{SITE_CONFIG.contact.email}</a></p>
               </div>
             </section>
 

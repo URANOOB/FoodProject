@@ -2,10 +2,11 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { ArrowLeft } from "iconoir-react"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata = {
   title: "Política de privacidad",
-  description: "Política de tratamiento de datos personales de Döminiös K·Ribe S.A.S.",
+  description: `Política de tratamiento de datos personales de ${SITE_CONFIG.name} S.A.S.`,
 }
 
 export default function PrivacidadPage() {
@@ -28,17 +29,17 @@ export default function PrivacidadPage() {
             <section className="bg-card p-6 rounded-lg border border-border">
               <h2 className="text-2xl font-bold text-foreground mb-4">1. Responsable del tratamiento</h2>
               <div className="space-y-1 text-muted-foreground text-sm">
-                <p>Döminiös K·Ribe S.A.S.</p>
-                <p>Carrera 6A # 117-15, Usaquén, Bogotá D.C., Colombia</p>
+                <p>{SITE_CONFIG.name} S.A.S.</p>
+                <p>{SITE_CONFIG.contact.fullAddress}</p>
                 <p>
                   Correo:{" "}
-                  <a href="mailto:contacto@dominioskribe.co" className="text-primary hover:underline">
-                    contacto@dominioskribe.co
+                  <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-primary hover:underline">
+                    {SITE_CONFIG.contact.email}
                   </a>
                 </p>
                 <p>
                   Teléfono:{" "}
-                  <a href="tel:+573105554321" className="text-primary hover:underline">+57 310 555 4321</a>
+                  <a href={SITE_CONFIG.links.phone} className="text-primary hover:underline">{SITE_CONFIG.contact.phone}</a>
                 </p>
               </div>
             </section>
@@ -55,7 +56,7 @@ export default function PrivacidadPage() {
               <h2 className="text-2xl font-bold text-foreground mb-4">3. Finalidades del tratamiento</h2>
               <div className="space-y-2 text-muted-foreground text-sm">
                 <p>Usamos los datos para responder consultas, gestionar pedidos, coordinar servicios de catering, cumplir obligaciones legales y mejorar la seguridad del sitio.</p>
-                <p>Los datos no se venden ni se utilizan para fines ajenos a la actividad de Döminiös K·Ribe.</p>
+                <p>Los datos no se venden ni se utilizan para fines ajenos a la actividad de {SITE_CONFIG.name}.</p>
               </div>
             </section>
 

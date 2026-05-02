@@ -6,6 +6,7 @@ import { LocationSection } from "@/components/location-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { StickyCTA } from "@/components/sticky-cta"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export default function Home() {
   const structuredData = {
@@ -13,26 +14,27 @@ export default function Home() {
     "@graph": [
       {
         "@type": "Restaurant",
-        "@id": "https://dominioskribe.co/#restaurant",
-        name: "Döminiös K·Ribe",
+        "@id": `${SITE_CONFIG.url}/#restaurant`,
+        name: SITE_CONFIG.name,
         description:
           "Comida callejera en Usaquén, Bogotá: hamburguesas, perros calientes, salchipapas, parrilla y pizza artesanal.",
-        url: "https://dominioskribe.co",
-        telephone: "+57-310-555-4321",
+        url: SITE_CONFIG.url,
+        telephone: SITE_CONFIG.contact.phone,
         servesCuisine: ["Comida callejera", "Hamburguesas", "Pizza", "Parrilla", "Colombiana"],
         priceRange: "$$",
-        logo: "https://dominioskribe.co/graphics/logo.png",
+        logo: `${SITE_CONFIG.url}/graphics/logo.png`,
+        image: `${SITE_CONFIG.url}${SITE_CONFIG.ogImage}`,
         address: {
           "@type": "PostalAddress",
-          streetAddress: "Carrera 6A # 117-15",
-          addressLocality: "Bogotá",
-          addressRegion: "Cundinamarca",
+          streetAddress: SITE_CONFIG.contact.address,
+          addressLocality: SITE_CONFIG.contact.city,
+          addressRegion: "Bogotá D.C.",
           addressCountry: "CO",
         },
         geo: {
           "@type": "GeoCoordinates",
-          latitude: "4.6973",
-          longitude: "-74.0306",
+          latitude: SITE_CONFIG.location.lat.toString(),
+          longitude: SITE_CONFIG.location.lng.toString(),
         },
         openingHoursSpecification: [
           {
@@ -55,19 +57,19 @@ export default function Home() {
       },
       {
         "@type": "LocalBusiness",
-        "@id": "https://dominioskribe.co/#localbusiness",
-        name: "Döminiös K·Ribe",
-        description: "Carta callejera con carácter en Usaquén, Bogotá.",
+        "@id": `${SITE_CONFIG.url}/#localbusiness`,
+        name: SITE_CONFIG.name,
+        description: SITE_CONFIG.description,
         slogan: "Donde la calle se vuelve sabor",
       },
       {
         "@type": "WebSite",
-        "@id": "https://dominioskribe.co/#website",
-        url: "https://dominioskribe.co",
-        name: "Döminiös K·Ribe",
+        "@id": `${SITE_CONFIG.url}/#website`,
+        url: SITE_CONFIG.url,
+        name: SITE_CONFIG.name,
         description: "Comida callejera con sabor en Bogotá.",
         publisher: {
-          "@id": "https://dominioskribe.co/#restaurant",
+          "@id": `${SITE_CONFIG.url}/#restaurant`,
         },
         inLanguage: "es-CO",
       },

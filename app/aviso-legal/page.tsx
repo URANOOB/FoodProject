@@ -2,10 +2,11 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { ArrowLeft } from "iconoir-react"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata = {
-  title: "Aviso legal | Döminiös K·Ribe",
-  description: "Información legal y datos de contacto de Döminiös K·Ribe S.A.S.",
+  title: "Aviso legal",
+  description: `Información legal y datos de contacto de ${SITE_CONFIG.name} S.A.S.`,
 }
 
 export default function AvisoLegalPage() {
@@ -28,8 +29,8 @@ export default function AvisoLegalPage() {
             <section className="bg-card p-6 rounded-lg border border-border">
               <h2 className="text-2xl font-bold text-foreground mb-4">Datos de la empresa</h2>
               <div className="space-y-2 text-muted-foreground">
-                <p><strong className="text-foreground">Razón social:</strong> Döminiös K·Ribe S.A.S.</p>
-                <p><strong className="text-foreground">Nombre comercial:</strong> Döminiös K·Ribe</p>
+                <p><strong className="text-foreground">Razón social:</strong> {SITE_CONFIG.name} S.A.S.</p>
+                <p><strong className="text-foreground">Nombre comercial:</strong> {SITE_CONFIG.name}</p>
                 <p><strong className="text-foreground">NIT:</strong> [Pendiente de asignación]</p>
               </div>
             </section>
@@ -37,8 +38,8 @@ export default function AvisoLegalPage() {
             <section className="bg-card p-6 rounded-lg border border-border">
               <h2 className="text-2xl font-bold text-foreground mb-4">Ubicación</h2>
               <div className="space-y-1 text-muted-foreground">
-                <p>Carrera 6A # 117-15</p>
-                <p>Usaquén, Bogotá D.C.</p>
+                <p>{SITE_CONFIG.contact.address}</p>
+                <p>{SITE_CONFIG.contact.city}</p>
                 <p>Colombia</p>
               </div>
             </section>
@@ -48,12 +49,12 @@ export default function AvisoLegalPage() {
               <div className="space-y-2 text-muted-foreground">
                 <p>
                   <strong className="text-foreground">Teléfono:</strong>{" "}
-                  <a href="tel:+573105554321" className="text-primary hover:underline">+57 310 555 4321</a>
+                  <a href={SITE_CONFIG.links.phone} className="text-primary hover:underline">{SITE_CONFIG.contact.phone}</a>
                 </p>
                 <p>
                   <strong className="text-foreground">Correo electrónico:</strong>{" "}
-                  <a href="mailto:contacto@dominioskribe.co" className="text-primary hover:underline">
-                    contacto@dominioskribe.co
+                  <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-primary hover:underline">
+                    {SITE_CONFIG.contact.email}
                   </a>
                 </p>
               </div>
@@ -70,7 +71,7 @@ export default function AvisoLegalPage() {
               <h2 className="text-2xl font-bold text-foreground mb-4">Propiedad Intelectual</h2>
               <div className="space-y-4 text-muted-foreground text-sm">
                 <p>
-                  Los contenidos de este sitio, incluyendo textos, logotipos, imágenes y diseño, son propiedad de Döminiös K·Ribe S.A.S. o se utilizan bajo licencia.
+                  Los contenidos de este sitio, incluyendo textos, logotipos, imágenes y diseño, son propiedad de {SITE_CONFIG.name} S.A.S. o se utilizan bajo licencia.
                 </p>
                 <p>
                   Queda prohibida la reproducción total o parcial de cualquier contenido sin la autorización previa y por escrito de los titulares.
@@ -87,7 +88,7 @@ export default function AvisoLegalPage() {
             </section>
 
             <div className="text-sm text-muted-foreground text-center pt-8 border-t border-border">
-              <p>Actualizado: abril de 2026</p>
+              <p>Actualizado: mayo de 2026</p>
             </div>
           </div>
         </div>

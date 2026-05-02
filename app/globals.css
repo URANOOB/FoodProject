@@ -119,14 +119,15 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --spacing-hero-md: 31.25rem;
   --spacing-hero-lg: 37.5rem;
-  --aspect-portrait: 4 / 5;
   --width-tab: 100px;
-  --spacing-glow: 500px;
   --width-cta-badge: 120px;
   --width-cta-badge-md: 130px;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   * {
     @apply border-border outline-ring/50;
   }
@@ -143,30 +144,6 @@
   0% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4); }
   70% { box-shadow: 0 0 0 10px rgba(251, 191, 36, 0); }
   100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
-}
-
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 8s linear infinite;
-}
-
-.animate-pulse-gold {
-  animation: pulse-gold 2s infinite;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 30s linear infinite;
 }
 
 @keyframes float {
@@ -216,8 +193,7 @@
     linear-gradient(115deg, #050505 0%, #090907 45%, #121008 100%);
 }
 
-.chalk-hero::before,
-.menu-board::before {
+.chalk-hero::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -227,71 +203,6 @@
     linear-gradient(115deg, transparent 0 46%, rgba(255, 255, 255, 0.08) 47%, transparent 48%),
     radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.08), transparent 20%);
   mix-blend-mode: screen;
-}
-
-.menu-board {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid #5f4b19;
-  border-radius: 8px;
-  padding: 14px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 28%),
-    #0d0c09;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-}
-
-.price-sticker {
-  display: inline-flex;
-  min-width: 96px;
-  align-items: center;
-  justify-content: center;
-  transform: rotate(-2deg);
-  border-radius: 2px;
-  background: #f6f2e9;
-  padding: 5px 12px;
-  color: #111;
-  font-size: 1.35rem;
-  font-weight: 950;
-  line-height: 1;
-  box-shadow: 4px 4px 0 rgba(251, 191, 36, 0.45);
-}
-
-.poster-rail {
-  display: flex;
-  gap: 18px;
-  overflow-x: auto;
-  padding: 4px 4px 20px;
-  scroll-snap-type: x mandatory;
-}
-
-.poster-rail > img {
-  scroll-snap-align: start;
-}
-
-.brush-stroke {
-  position: absolute;
-  z-index: 0;
-  width: 190px;
-  height: 86px;
-  pointer-events: none;
-  opacity: 0.85;
-  background:
-    linear-gradient(102deg, transparent 0 8%, #f4a62a 9% 18%, transparent 19% 28%, #f4a62a 29% 42%, transparent 43% 52%, #f4a62a 53% 68%, transparent 69%),
-    linear-gradient(22deg, transparent 0 18%, rgba(251, 191, 36, 0.58) 19% 32%, transparent 33%);
-  filter: drop-shadow(0 10px 25px rgba(244, 166, 42, 0.22));
-}
-
-.brush-stroke-left {
-  left: -36px;
-  bottom: 54px;
-  transform: rotate(-26deg);
-}
-
-.brush-stroke-right {
-  right: -38px;
-  top: 88px;
-  transform: rotate(142deg);
 }
 
 .scrollbar-hide {
@@ -317,4 +228,21 @@
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: var(--primary) transparent;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite reverse;
 }

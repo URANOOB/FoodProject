@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { SITE_CONFIG } from "@/lib/constants"
 import { Menu, Xmark, Phone } from "iconoir-react"
 
 export function Header() {
@@ -46,13 +47,23 @@ export function Header() {
       <div className="relative rounded-3xl bg-black/70 p-1 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
         <div className="flex h-16 items-center justify-between gap-2 px-2 md:px-5">
           <Link href="/" className="flex items-center gap-4 group shrink-0">
-            <div className="relative h-24 w-24 md:h-28 md:w-28 transition-all duration-500 group-hover:scale-110 group-hover:brightness-125 group-hover:drop-shadow-[0_0_30px_rgba(251,191,36,0.8)]">
+            <div className="relative h-24 w-24 md:h-28 md:w-28 transition-all duration-500">
+              {/* Vibrant Glow Logo - Aparece al hacer hover */}
+              <Image 
+                src="/graphics/logo.png" 
+                alt="" 
+                fill 
+                sizes="(max-width: 768px) 96px, 112px"
+                className="object-contain blur-2xl opacity-0 transition-all duration-500 group-hover:scale-110 group-hover:opacity-70 group-hover:brightness-125 pointer-events-none select-none" 
+                aria-hidden="true"
+              />
+              {/* Logo principal */}
               <Image 
                 src="/graphics/logo.png" 
                 alt="Döminiös" 
                 fill 
                 sizes="(max-width: 768px) 96px, 112px"
-                className="object-contain" 
+                className="relative object-contain transition-all duration-500 group-hover:scale-110" 
               />
             </div>
           </Link>
@@ -71,7 +82,7 @@ export function Header() {
 
           <div className="flex items-center gap-2">
             <a
-              href="tel:+573105554321"
+              href={SITE_CONFIG.links.phone}
               className="animate-pulse-gold flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-primary-foreground transition-all hover:scale-105 active:scale-95 sm:px-8"
             >
               <Phone className="h-3 w-3" />

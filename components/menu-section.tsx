@@ -1,8 +1,10 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import Image from "next/image"
-import { CoffeeCup, FireFlame, PizzaSlice, Star, Truck } from "iconoir-react"
+import { PizzaSlice, Star, Truck } from "iconoir-react"
+import { PiHamburger } from "react-icons/pi"
+import { TbGrill } from "react-icons/tb"
 
 type MenuItem = {
   name: string
@@ -13,21 +15,14 @@ type MenuItem = {
   image?: string
 }
 
-type MenuCategory = {
-  id: string
-  label: string
-  title: string
-  icon: typeof PizzaSlice
-  items: MenuItem[]
-}
-
-const menuCategories: MenuCategory[] = [
+const menuCategories = [
   {
     id: "burgers",
     label: "Burgers",
     title: "Hamburguesas y Sandwichs",
-    icon: PizzaSlice,
+    icon: PiHamburger,
     items: [
+
       {
         name: "Sencilla",
         price: "12.000",
@@ -65,7 +60,7 @@ const menuCategories: MenuCategory[] = [
     id: "parrilla",
     label: "Parrilla",
     title: "Wok, Churrasco y Mazorcada",
-    icon: FireFlame,
+    icon: TbGrill,
     items: [
       {
         name: "Arroz al wok",
@@ -93,7 +88,7 @@ const menuCategories: MenuCategory[] = [
     id: "bbq",
     label: "BBQ",
     title: "Alas, Patacón y Costillas",
-    icon: FireFlame,
+    icon: TbGrill,
     items: [
       {
         name: "Alas en salsa búfalo",
@@ -119,7 +114,7 @@ const menuCategories: MenuCategory[] = [
   },
   {
     id: "street",
-    label: "Street",
+    label: "Callejera",
     title: "Salchipapas, Perros y Arepas",
     icon: Truck,
     items: [
@@ -195,7 +190,7 @@ const menuCategories: MenuCategory[] = [
     id: "pizza",
     label: "Pizza",
     title: "Sabores de pizza",
-    icon: CoffeeCup,
+    icon: PizzaSlice,
     items: [
       {
         name: "Hawaiana",
@@ -235,12 +230,22 @@ function MenuItemCard({ item }: { item: MenuItem }) {
         <div className="relative h-full w-full transition-transform duration-500 group-hover:scale-105">
           {showImage ? (
             <div className="relative h-full w-full">
+              {/* Vibrant Glow Background */}
+              <Image
+                src={item.image!}
+                alt=""
+                fill
+                sizes="(max-width: 768px) 50vw, 33vw"
+                className="object-contain blur-2xl opacity-30 scale-110 pointer-events-none select-none"
+                aria-hidden="true"
+              />
+              {/* Main Image */}
               <Image
                 src={item.image!}
                 alt={item.name}
                 fill
                 sizes="(max-width: 768px) 50vw, 33vw"
-                className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
+                className="relative object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.2)]"
                 onError={() => setImageFailed(true)}
               />
             </div>
@@ -297,17 +302,12 @@ export function MenuSection() {
     setShowItemsIndicator(!isAtBottom)
   }
 
-  // Reset items indicator when category changes
-  useEffect(() => {
-    setShowItemsIndicator(true)
-  }, [activeCategory])
-
   return (
-    <section id="menu" className="relative overflow-hidden bg-background py-16 md:py-32">
+    <section id="menu" className="relative overflow-hidden bg-background py-16 md:py-20">
       <div className="relative z-10 mx-auto max-w-7xl px-10 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-20">
-          <div className="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="mb-16">
+          <div className="flex flex-col items-center text-center gap-4 md:flex-row md:items-end md:justify-between md:text-left">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.4em] text-primary mb-2">Nuestro Menú</p>
               <h2 className="text-6xl font-black uppercase leading-none tracking-tighter text-foreground sm:text-8xl md:text-9xl">
@@ -334,8 +334,11 @@ export function MenuSection() {
                 return (
                   <button
                     key={category.id}
-                    onClick={() => setActiveCategory(category.id)}
-                    className={`flex flex-col items-center justify-center gap-3 rounded-2xl border px-6 py-5 min-w-tab transition-all ${
+                    onClick={() => {
+                      setActiveCategory(category.id)
+                      setShowItemsIndicator(true)
+                    }}
+                    className={`flex flex-col items-center justify-center gap-3 rounded-2xl border py-5 w-27.5 shrink-0 transition-all ${
                       isActive
                         ? "border-primary bg-primary text-primary-foreground shadow-xl shadow-primary/20 scale-105"
                         : "border-white/10 bg-white/5 text-foreground hover:bg-white/10 hover:border-white/20"
@@ -367,7 +370,7 @@ export function MenuSection() {
         </div>
 
         {/* Active category title */}
-        <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
+        <div className="mb-12 flex flex-col items-center text-center gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-0 sm:text-left">
           <h3 className="text-4xl font-black uppercase tracking-tighter text-foreground sm:text-6xl md:text-7xl">
             {activeMenu.title}
           </h3>
