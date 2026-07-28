@@ -1,5 +1,5 @@
 {
-  "name": "my-v0-project",
+  "name": "food-landing-template",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -89,12 +89,19 @@
     "glob": "^11.1.0",
     "postcss": "^8.5.13"
   },
-  "description": "<div align=\"center\">",
+  "description": "Plantilla moderna y responsive de una landing para restaurantes y negocios de comida.",
   "main": "index.js",
   "directories": {
     "lib": "lib"
   },
-  "keywords": [],
+  "keywords": [
+    "nextjs",
+    "restaurant",
+    "food",
+    "landing-page",
+    "template",
+    "tailwindcss"
+  ],
   "author": "",
   "license": "ISC",
   "type": "module"
